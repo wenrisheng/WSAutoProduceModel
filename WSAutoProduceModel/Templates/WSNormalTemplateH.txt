@@ -1,0 +1,15 @@
+//
+//  WSEmojiModel.h
+//  WSMyEmoji
+//
+//  Created by wenrisheng on 16/4/1.
+//  Copyright © 2016年 wenrisheng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface #className# : NSObject
+
+#properties#
+
+@end

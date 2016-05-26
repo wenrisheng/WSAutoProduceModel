@@ -1,0 +1,15 @@
+.DS_Store
+
+*.xcuserstate
+*.swp
+*.xccheckout
+*.xcbkptlist
+*.xccurrentversion
+Breakpoints_v2.xcbkptlist
+UserInterfaceState.xcuserstate
+*.xcscheme
+xcschememanagement.plist
+WorkspaceSettings.xcsettings
+./**/xcuserdata/
+./**/xcuserstate
+
