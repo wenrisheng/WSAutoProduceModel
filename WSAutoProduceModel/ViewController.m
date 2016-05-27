@@ -8,18 +8,16 @@
 
 #import "ViewController.h"
 #import "NSObject+WSClass.h"
+#import "WSPreviewWindowController.h"
+#import "WSPreviewViewController.h"
 
 #define WSFileSavePath    @"WSFileSavePath"
 #define WSClassName       @"WSClassName"
 #define WSJsonStr         @"WSJsonStr"
 
-#define WSPropertyValue   @"WSPropertyValue"
-#define WSPropertyName    @"WSPropertyName"
-#define WSPropertyType    @"WSPropertyType"
-
 #define ClassNameExpress  @"#className#"
 #define PropertiesExpress @"#properties#"
-#define HImportExpress    @"#className.h#"
+
 
 @implementation ViewController
 
@@ -27,6 +25,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
+    self.view.window.title = @"ios模型生成软件";
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *savePath = [userDefaults objectForKey:WSFileSavePath];
     NSString *className = [userDefaults objectForKey:WSClassName];
@@ -65,149 +65,152 @@
     NSString *HFilePath = [savePath stringByAppendingPathComponent:HFileName];
     NSString *MFilePath = [savePath stringByAppendingPathComponent:MFileName];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL HisDir = NO;
-    BOOL HFileExit = [fileManager fileExistsAtPath:HFilePath isDirectory:(&HisDir)];
-    if (HFileExit) {
-        NSLog(@"已经存在%@文件", HFileName);
-    }
-    
+
     /*****************生成.h文件*********************/
-    BOOL HFileCreate = [fileManager createFileAtPath:HFilePath contents:nil attributes:nil];
-    if (HFileCreate) {
-        NSLog(@".h文件创建成功");
-        NSBundle *mainBundle = [NSBundle mainBundle];
-        NSError *readHFileError = nil;
-        NSString *HTemplatePath = [mainBundle pathForResource:@"WSNormalTemplateH" ofType:@"txt"];
-        NSString *HTemplate = [NSString stringWithContentsOfFile:HTemplatePath encoding:NSUTF8StringEncoding error:&readHFileError];
-        if (readHFileError) {
-            NSLog(@"读取.h模板文件错误:%@", readHFileError);
+
+    [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateH" ofType:@"txt" handle:^(NSString *fileContent, NSError *error) {
+        if (error) {
+            NSLog(@"读取.h模板文件错误:%@", error);
         } else {
-            NSMutableString *HResultStr = [NSMutableString stringWithString:HTemplate];
-            
+            NSMutableString *HTemplate = [NSMutableString stringWithString:fileContent];
             // 替换类名
             NSString *classNameExpress = ClassNameExpress;
             NSRange classNameRange = [HTemplate rangeOfString:classNameExpress options:NSRegularExpressionSearch];
             if (classNameRange.location != NSNotFound) {
-                [HResultStr deleteCharactersInRange:classNameRange];
-                [HResultStr insertString:className atIndex:classNameRange.location];
+                [HTemplate deleteCharactersInRange:classNameRange];
+                [HTemplate insertString:className atIndex:classNameRange.location];
+                NSLog(@"已经替换完.h类名");
             } else {
                 NSLog(@".h模板文件没有发现类名表达式");
             }
             
             // 替换属性
             NSString *propertiesExpress = PropertiesExpress;
-            NSRange  propertiesRange = [HResultStr rangeOfString:propertiesExpress options:NSRegularExpressionSearch];
+            NSRange  propertiesRange = [HTemplate rangeOfString:propertiesExpress options:NSRegularExpressionSearch];
             if (propertiesRange.location != NSNotFound) {
-                NSArray *dataArray = [self getPropertiesFromJson:jsonStr];
-                NSString *propertyConvertValue = [self getPropertiesStrFromDataArray:dataArray];
-                [HResultStr deleteCharactersInRange:propertiesRange];
-                [HResultStr insertString:propertyConvertValue atIndex:propertiesRange.location];
+                [self getPropertiesModelFromJsonStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
+                    if (error) {
+                        NSLog(@"json字符串转换模型失败:%@", error);
+                    } else {
+                        NSString *propertyConvertValue = [self getPropertiesStrFromModelArray:modelArray];
+                        [HTemplate deleteCharactersInRange:propertiesRange];
+                        [HTemplate insertString:propertyConvertValue atIndex:propertiesRange.location];
+                         NSLog(@"已经替换完.h属性");
+                    }
+
+                }];
             } else {
                 NSLog(@".h模板文件没有发现属性表达式");
             }
 
-            // .h文件数据写入
-            BOOL HWrite=[HResultStr writeToFile:HFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            if (HWrite) {
+            // 创建写入.h文件
+            BOOL HFileCreate = [WSFileUtil createFileAtFilePath:HFilePath contents:[HTemplate dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+            if (HFileCreate) {
                 NSLog(@".h写入成功");
             } else {
                 NSLog(@".h文件写入失败");
             }
         }
-    } else {
-        NSLog(@".h文件创建失败");
-    }
+    }];
     
     
    /*****************生成.m文件*********************/
-    BOOL MisDir = NO;
-    BOOL MFileExit = [fileManager fileExistsAtPath:HFilePath isDirectory:(&MisDir)];
-    if (MFileExit) {
-        NSLog(@"已经存在%@文件", MFileName);
-    }
-    BOOL MFileCreate = [fileManager createFileAtPath:MFilePath contents:nil attributes:nil];
-    if (MFileCreate) {
-        NSLog(@".m文件创建成功");
-        NSBundle *mainBundle = [NSBundle mainBundle];
-        NSError *readMFileError = nil;
-        NSString *MTemplatePath = [mainBundle pathForResource:@"WSNormalTemplateM" ofType:@"txt"];
-        NSString *MTemplate = [NSString stringWithContentsOfFile:MTemplatePath encoding:NSUTF8StringEncoding error:&readMFileError];
-        if (readMFileError) {
-            NSLog(@"读取.m模板文件错误:%@", readMFileError);
+    [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateM" ofType:@"txt" handle:^(NSString *fileContent, NSError *error) {
+        if (error) {
+             NSLog(@"读取.m模板文件错误:%@", error);
         } else {
-             NSMutableString *MResultStr = [NSMutableString stringWithString:MTemplate];
-            
-            // 替换头文件import
-            NSString *hImportExpress = HImportExpress;
-            NSRange hImportRange = [MTemplate rangeOfString:hImportExpress options:NSRegularExpressionSearch];
-            if (hImportRange.location != NSNotFound) {
-                NSString *importStr = HFileName;
-                [MResultStr deleteCharactersInRange:hImportRange];
-                [MResultStr insertString:importStr atIndex:hImportRange.location];
+            NSMutableString *MTemplate = [NSMutableString stringWithString:fileContent];
+            while (YES) {
+                // 替换类名
+                NSString *classNameExpress = ClassNameExpress;
+                NSRange classNameRange = [MTemplate rangeOfString:classNameExpress options:NSRegularExpressionSearch];
+                if (classNameRange.location != NSNotFound) {
+                    [MTemplate deleteCharactersInRange:classNameRange];
+                    [MTemplate insertString:className atIndex:classNameRange.location];
+                } else {
+                    NSLog(@"已经替换完.m的头文件引入和类名");
+                    break;
+                }
             }
-            
-//            e行宝
-            // 替换类名
-            NSString *classNameExpress = ClassNameExpress;
-            NSRange classNameRange = [MTemplate rangeOfString:classNameExpress options:NSRegularExpressionSearch];
-            if (classNameRange.location != NSNotFound) {
-                [MResultStr deleteCharactersInRange:classNameRange];
-                [MResultStr insertString:className atIndex:classNameRange.location];
-            } else {
-                NSLog(@".m模板文件没有发现类名表达式");
-            }
-            
-            // .m文件数据写入
-            BOOL MWrite=[MResultStr writeToFile:MFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            if (MWrite) {
+            // 创建写入.h文件
+            BOOL MFileCreate = [WSFileUtil createFileAtFilePath:MFilePath contents:[MTemplate dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+            if (MFileCreate) {
                 NSLog(@".m写入成功");
             } else {
                 NSLog(@".m文件写入失败");
             }
+
         }
-    } else {
-        NSLog(@".m文件创建失败");
-    }
-
+    }];
 }
 
-- (NSString *)getPropertyConvertValueWithJsonStr:(NSString *)jsonStr
+- (IBAction)previewButAction:(id)sender {
+//    WSPreviewViewController *previewVC = [[WSPreviewViewController alloc] init];
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    WSPreviewWindowController *previewWC = [storyboard instantiateControllerWithIdentifier:@"WSPreviewWindowController"];
+//    previewWindow.contentView = previewVC.view;
+    NSWindow *suberWindow = previewWC.window;
+    NSWindow *superWindow = self.view.window;
+    [previewWC.window makeKeyWindow];
+[previewWC.window beginSheet:self.view.window completionHandler:^(NSModalResponse returnCode) {
+    NSLog(@"resp:%d", returnCode);
+}];
+    
+//    [previewWindow makeKeyAndOrderFront:nil];
+//    [previewWC.window makeKeyAndOrderFront:nil];
+   
+//    [self.view.window beginSheet:previewWC.window completionHandler:^(NSModalResponse returnCode) {
+//        
+//    }];
+//     [NSApp runModalForWindow:previewWC.window];
+}
+
+#pragma mark - json字符转转换成属性模型数组
+- (void)getPropertiesModelFromJsonStr:(NSString *)jsonStr handle:(void (^)(NSArray<WSPropertyModel *> *modelArray, NSError *error))handle
 {
-    return nil;
+    [WSJsonUtil convertJsonStrToObjWithJsonStr:jsonStr handle:^(id obj, NSError *error) {
+        if (error) {
+            NSLog(@"json字符串转换错误！：%@", error);
+            if (handle) {
+                handle(nil, error);
+            }
+        } else {
+            if ([obj isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *jsonDic = obj;
+                NSMutableArray<WSPropertyModel *> *resultArray = [NSMutableArray array];
+                NSArray *keys = [jsonDic allKeys];
+                NSInteger count = keys.count;
+                for (int i = 0; i < count; i++) {
+                    id key = [keys objectAtIndex:i];
+                    id value = [jsonDic valueForKey:key];
+                    NSString *propertyName = key;
+                    NSString *propertyType = [self getPropertyTypeWithValue:value];
+                    WSPropertyModel *model = [[WSPropertyModel alloc] init];
+                    model.name = propertyName;
+                    model.type = propertyType;
+                    [resultArray addObject:model];
+                }
+                if (handle) {
+                    handle(resultArray, error);
+                }
+            } else {
+                if (handle) {
+                    handle(nil, [NSError errorWithDomain:@"json字符串格式错误！" code:100 userInfo:nil]);
+                }
+            }
+        }
+    }];
 }
 
-- (NSArray *)getPropertiesFromJson:(NSString *)jsonStr
-{
-    NSError *jsonError = nil;
-    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&jsonError];
-    if (jsonStr) {
-        NSLog(@"json字符串转换错误！");
-    }
-    NSMutableArray *resultArray = [NSMutableArray array];
-    NSArray *keys = [jsonDic allKeys];
-    NSInteger count = keys.count;
-    for (int i = 0; i < count; i++) {
-        NSMutableDictionary *model = [NSMutableDictionary dictionary];
-        id key = [keys objectAtIndex:i];
-        id value = [jsonDic valueForKey:key];
-        NSString *propertyName = key;
-        NSString *propertyType = [self getPropertyTypeWithValue:value];
-        [model setValue:propertyName forKey:WSPropertyName];
-        [model setValue:propertyType forKey:WSPropertyType];
-        [resultArray addObject:model];
-    }
-    return resultArray;
-}
-
-- (NSString *)getPropertiesStrFromDataArray:(NSArray *)dataArray
+#pragma mark 属性模型数组拼接成字符串
+- (NSString *)getPropertiesStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray
 {
     NSMutableString *result = [NSMutableString string];
-    NSInteger count = dataArray.count;
+    NSInteger count = modelArray.count;
     for (int i = 0; i < count; i++) {
-        NSDictionary *model = [dataArray objectAtIndex:i];
-        NSString *propertyName = [model objectForKey:WSPropertyName];
-        NSString *propertyType = [model objectForKey:WSPropertyType];
+        WSPropertyModel *model = [modelArray objectAtIndex:i];
+        NSString *propertyName = model.name;
+        NSString *propertyType = model.type;
         NSString *propertyExpress = [NSString stringWithFormat:@"@property (strong, nonatomic) %@ *%@;", propertyType, propertyName];
         [result appendString:propertyExpress];
         if (i != count - 1) {
@@ -217,6 +220,7 @@
     return result;
 }
 
+#pragma mark 获取属性值的类型
 - (NSString *)getPropertyTypeWithValue:(id)value
 {
     if ([value isKindOfClass:[NSString class]]) {

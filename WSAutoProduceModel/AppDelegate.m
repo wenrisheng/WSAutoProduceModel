@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
+@property (weak) IBOutlet NSMenu *mainMenu;
 
 @end
 
@@ -16,6 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    NSApplication *application = [NSApplication sharedApplication];
+    NSWindow *mainWindow = application.mainWindow;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
