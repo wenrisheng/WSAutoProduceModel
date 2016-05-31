@@ -22,10 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
-    _hLabel.stringValue = _hFileName;
-    _hTextView.string = _hFileContent;
-    _mLabel.stringValue = _mFileName;
-    _mTextView.string = _mFileContent;
+    if (_hFileName) {
+        _hLabel.stringValue = _hFileName;
+    }
+    if (_hFileContent) {
+        _hTextView.string = _hFileContent;
+    }
+    if (_mFileName) {
+        _mLabel.stringValue = _mFileName;
+    }
+    if (_mFileContent) {
+        _mTextView.string = _mFileContent;
+    }
+    
 }
 
 - (IBAction)productButAction:(id)sender {

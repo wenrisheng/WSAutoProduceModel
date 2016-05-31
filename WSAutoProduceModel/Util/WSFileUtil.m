@@ -12,12 +12,24 @@
 
 + (BOOL)createFileAtFilePath:(NSString *)filePath contents:(NSData *)data attributes:(NSDictionary<NSString *,id> *)attr
 {
+    
+    NSArray *pathArray = [filePath componentsSeparatedByString:@"/"];
+    NSString *fileName = [pathArray lastObject];
+    NSString *dirPath = [filePath substringToIndex:(filePath.length - fileName.length)];
+    
+    // 判断文件夹是否存在，不存在就创建
     BOOL isDir = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL fileExit = [fileManager fileExistsAtPath:filePath isDirectory:(&isDir)];
-    if (fileExit && !isDir) {
-        NSLog(@"已经存在%@文件", filePath);
+    BOOL dirExit = [fileManager fileExistsAtPath:dirPath isDirectory:(&isDir)];
+    if (!dirExit || !isDir) {
+        NSError *error = nil;
+        [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"创建文件夹失败！:%@", error);
+            return NO;
+        }
     }
+   
     BOOL createSuc = [fileManager createFileAtPath:filePath contents:data attributes:attr];
     return createSuc;
 }

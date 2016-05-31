@@ -19,6 +19,7 @@
 
 @interface WSHomeViewController ()
 
+@property (strong, nonatomic) WSPreviewWindowController *previewWC;
 @property (strong, nonatomic) NSString *HFilePath;
 @property (strong, nonatomic) NSString *HFileName;
 @property (strong, nonatomic) NSString *HFileContent;
@@ -59,23 +60,21 @@
 }
 
 - (IBAction)previewButAction:(id)sender {
+    
     [self processHFile:^{
         [self processMFile:^{
-            NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            WSPreviewWindowController *previewWC = [storyboard instantiateControllerWithIdentifier:@"WSPreviewWindowController"];
-            WSPreviewViewController *previewVC = (WSPreviewViewController *)previewWC.contentViewController;
+            self.previewWC = [[WSPreviewWindowController alloc] initWithWindowNibName:@"WSPreviewWindowController"];
+            WSPreviewViewController *previewVC = [[WSPreviewViewController alloc] init];
+            self.previewWC.contentViewController = previewVC;
             previewVC.hFilePath = self.HFilePath;
             previewVC.hFileContent = self.HFileContent;
             previewVC.hFileName = self.HFileName;
             previewVC.mFileContent = self.MFileContent;
             previewVC.mFilePath = self.MFilePath;
             previewVC.mFileName = self.MFileName;
-            //    [previewWC.window makeKeyWindow];
-            //    [previewWC.window beginCriticalSheet:self.view.window completionHandler:^(NSModalResponse returnCode) {
-            //        NSLog(@"resp:NSModalResponse");
-            //    }];
-            [NSApp runModalForWindow:previewWC.window];
-
+            
+            [self.previewWC.window orderFront:nil];
+            
         }];
     }];
 }
@@ -231,6 +230,8 @@
     [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateH" ofType:@"txt" handle:^(NSString *fileContent, NSError *error) {
         if (error) {
             NSLog(@"读取.h模板文件错误:%@", error);
+            return;
+           
         } else {
             NSMutableString *HTemplate = [NSMutableString stringWithString:fileContent];
             // 替换类名
@@ -242,6 +243,7 @@
                 NSLog(@"已经替换完.h类名");
             } else {
                 NSLog(@".h模板文件没有发现类名表达式");
+                return;
             }
             
             // 替换属性
@@ -378,6 +380,8 @@
         return @"NSNumber";
     } else if ([value isKindOfClass:[NSArray class]]) {
         return @"NSArray";
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+        return @"NSDictionary";
     }
     return @"NSObject";
 }

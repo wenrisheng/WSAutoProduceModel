@@ -22,6 +22,8 @@
 		A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFD71CF7F58900772EC7 /* WSPreviewWindowController.m */; };
 		A21ACFDE1CF83DCC00772EC7 /* WSHomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */; };
 		A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */; };
+		A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */; };
+		A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeWindowController.m; sourceTree = "<group>"; };
 		A21ACFDF1CF83DDF00772EC7 /* WSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSHomeViewController.h; sourceTree = "<group>"; };
 		A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeViewController.m; sourceTree = "<group>"; };
+		A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewViewController.xib; sourceTree = "<group>"; };
+		A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +92,8 @@
 				A21ACFC11CF7E97C00772EC7 /* Category */,
 				A21ACFC41CF7E97C00772EC7 /* Model */,
 				A21ACFC51CF7E97C00772EC7 /* Util */,
-				A21ACF971CF6D22400772EC7 /* Templates */,
 				A21ACF581CF6AB0C00772EC7 /* AppDelegate.h */,
+				A21ACF971CF6D22400772EC7 /* Templates */,
 				A21ACF591CF6AB0C00772EC7 /* AppDelegate.m */,
 				A21ACFDB1CF83DB200772EC7 /* Home */,
 				A21ACFD01CF7EFFD00772EC7 /* Preview */,
@@ -155,8 +159,10 @@
 			children = (
 				A21ACFD11CF7F02400772EC7 /* WSPreviewViewController.h */,
 				A21ACFD21CF7F02400772EC7 /* WSPreviewViewController.m */,
+				A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */,
 				A21ACFD61CF7F58900772EC7 /* WSPreviewWindowController.h */,
 				A21ACFD71CF7F58900772EC7 /* WSPreviewWindowController.m */,
+				A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -229,9 +235,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */,
 				A21ACF651CF6AB0C00772EC7 /* Assets.xcassets in Resources */,
 				A21ACF681CF6AB0C00772EC7 /* Main.storyboard in Resources */,
 				A21ACF9F1CF6DBDD00772EC7 /* WSNormalTemplateH.txt in Resources */,
+				A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */,
 				A21ACF9E1CF6D31B00772EC7 /* WSNormalTemplateM.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
