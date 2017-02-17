@@ -14,4 +14,6 @@
 
 + (void)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext handle:(void(^)(NSString *fileContent, NSError *error))handle;
 
++ (void)getFileContentWithFilePath:(NSString *)filePath handle:(void(^)(NSString *fileContent, NSError *error))handle;
+
 @end

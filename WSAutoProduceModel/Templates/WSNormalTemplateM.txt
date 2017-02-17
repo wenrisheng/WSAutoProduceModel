@@ -10,6 +10,6 @@
 
 @implementation #className#
 
-
+#MTLJSONSerializing#
 
 @end

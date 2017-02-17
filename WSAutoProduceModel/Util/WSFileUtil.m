@@ -37,8 +37,13 @@
 + (void)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext handle:(void (^)(NSString *, NSError *))handle
 {
     NSBundle *mainBundle = [NSBundle mainBundle];
-    NSError *readFileError = nil;
     NSString *filePath = [mainBundle pathForResource:name ofType:ext];
+    [self getFileContentWithFilePath:filePath handle:handle];
+}
+
++ (void)getFileContentWithFilePath:(NSString *)filePath handle:(void(^)(NSString *fileContent, NSError *error))handle
+{
+    NSError *readFileError = nil;
     NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
     if (handle) {
         if (readFileError) {

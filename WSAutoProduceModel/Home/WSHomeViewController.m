@@ -9,13 +9,15 @@
 #import "WSHomeViewController.h"
 #import "WSPreviewWindowController.h"
 #import "WSPreviewViewController.h"
+#import "MTLJsonUtil.h"
 
-#define WSFileSavePath    @"WSFileSavePath"
-#define WSClassName       @"WSClassName"
-#define WSJsonStr         @"WSJsonStr"
+#define WSFileSavePath                      @"WSFileSavePath"
+#define WSClassName                         @"WSClassName"
+#define WSJsonStr                           @"WSJsonStr"
 
-#define ClassNameExpress  @"#className#"
-#define PropertiesExpress @"#properties#"
+#define ClassNameExpress                    @"#className#"
+#define PropertiesExpress                   @"#properties#"
+#define MTLJSONSerializingEXpress           @"#MTLJSONSerializing#"
 
 @interface WSHomeViewController ()
 
@@ -31,6 +33,11 @@
 @property (weak) IBOutlet NSTextField *classNameTextField;
 @property (weak) IBOutlet NSTextField *savePathTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *jsonStrTextView;
+- (IBAction)savePathButAction:(id)sender;
+- (IBAction)hTemplateButAction:(id)sender;
+@property (weak) IBOutlet NSTextField *hTemplateTexld;
+- (IBAction)mTemplateButAction:(id)sender;
+@property (weak) IBOutlet NSTextField *mTemplateTextField;
 
 - (IBAction)productButAction:(NSButton *)sender;
 - (IBAction)previewButAction:(id)sender;
@@ -77,6 +84,45 @@
             
         }];
     }];
+}
+
+- (IBAction)savePathButAction:(id)sender {
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setCanChooseDirectories:YES]; //可以打开目录
+    [oPanel setCanChooseFiles:NO]; //不能打开文件(我需要处理一个目录内的所有文件)
+//    [oPanel setDirectory:NSHomeDirectory()]; //起始目录为Home
+    if ([oPanel runModal] == NSOKButton) {  //如果用户点OK
+        NSURL *saveUrl = [[oPanel URLs] objectAtIndex:0];
+        NSString *savePath = [saveUrl relativePath];
+        self.savePathTextField.stringValue = savePath;
+        //我在console输出这个目录的地址
+    }
+}
+
+- (IBAction)hTemplateButAction:(id)sender {
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setCanChooseDirectories:NO]; //可以打开目录
+    [oPanel setCanChooseFiles:YES]; //不能打开文件(我需要处理一个目录内的所有文件)
+//    [oPanel setDirectory:NSHomeDirectory()]; //起始目录为Home
+    if ([oPanel runModal] == NSOKButton) {  //如果用户点OK
+        NSURL *url = [[oPanel URLs] objectAtIndex:0];
+        NSString *hTemplatePath = [url relativePath];
+        self.hTemplateTexld.stringValue = hTemplatePath;
+        //我在console输出这个目录的地址
+    }
+}
+
+- (IBAction)mTemplateButAction:(id)sender {
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setCanChooseDirectories:NO]; //可以打开目录
+    [oPanel setCanChooseFiles:YES]; //不能打开文件(我需要处理一个目录内的所有文件)
+    if ([oPanel runModal] == NSOKButton) {  //如果用户点OK
+        NSURL *url = [[oPanel URLs] objectAtIndex:0];
+        NSString *mTemplatePath = [url relativePath];
+        self.mTemplateTextField.stringValue = mTemplatePath;
+        //我在console输出这个目录的地址
+    }
+
 }
 
 - (IBAction)productButAction:(NSButton *)sender {
@@ -226,7 +272,11 @@
     self.HFilePath = [savePath stringByAppendingPathComponent:self.HFileName];
     
     /*****************生成.h文件*********************/
-    
+    if (self.hTemplateTexld.stringValue.length > 0) {
+        [WSFileUtil getFileContentWithFilePath:self.hTemplateTexld.stringValue handle:^(NSString *fileContent, NSError *error) {
+            
+        }];
+    }
     [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateH" ofType:@"txt" handle:^(NSString *fileContent, NSError *error) {
         if (error) {
             NSLog(@"读取.h模板文件错误:%@", error);
@@ -273,6 +323,11 @@
     }];
 }
 
+- (void)proceHFileContent:(NSString *)fileContent
+{
+    
+}
+
 - (void)processMFile:(void(^)(void))handle
 {
     
@@ -305,6 +360,18 @@
                     NSLog(@"已经替换完.m的头文件引入和类名");
                     break;
                 }
+            }
+            // 替换MTLJSONSerializing协议属性字符串
+            NSString *JSONSerializingEXpress =  MTLJSONSerializingEXpress;
+            NSRange jsonSerializingRange = [MTemplate rangeOfString:JSONSerializingEXpress options:NSRegularExpressionSearch];
+            if (jsonSerializingRange.location != NSNotFound) {
+                [self getPropertiesModelFromJsonStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
+                    if (!error) {
+                        NSString *propertyConvertValue = [MTLJsonUtil getMTLJSONSerializingPropertiesStrFromModelArray:modelArray];
+                        [MTemplate deleteCharactersInRange:jsonSerializingRange];
+                        [MTemplate insertString:propertyConvertValue atIndex:jsonSerializingRange.location];
+                    }
+                }];
             }
             // 创建写入.m文件
             self.MFileContent = [NSString stringWithString:MTemplate];
@@ -361,6 +428,7 @@
     for (int i = 0; i < count; i++) {
         WSPropertyModel *model = [modelArray objectAtIndex:i];
         NSString *propertyName = model.name;
+        propertyName = [self converPropertyName:propertyName];
         NSString *propertyType = model.type;
         NSString *propertyExpress = [NSString stringWithFormat:@"@property (strong, nonatomic) %@ *%@;", propertyType, propertyName];
         [result appendString:propertyExpress];
@@ -369,6 +437,15 @@
         }
     }
     return result;
+}
+
+- (NSString *)converPropertyName:(NSString *)propertyName
+{
+    if ([propertyName isEqualToString:@"id"]) {
+        return @"_id";
+    } else {
+        return propertyName;
+    }
 }
 
 #pragma mark 获取属性值的类型
