@@ -94,6 +94,7 @@
         previewVC.mFileContent = mFileContent;
         previewVC.mFilePath = MFilePath;
         previewVC.mFileName = MFileName;
+        previewWC.window.title = [key capitalizedString];
         [previewWC.window orderFront:nil];
         [self.allWindowArray addObject:previewWC];
 
