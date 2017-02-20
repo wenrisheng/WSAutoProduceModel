@@ -12,4 +12,6 @@
 
 #MTLJSONSerializing#
 
+#MTLManagedObjectSerializing#
+
 @end

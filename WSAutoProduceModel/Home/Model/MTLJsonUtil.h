@@ -19,9 +19,16 @@ typedef NS_ENUM(NSInteger, PropertyType)
 
 @interface MTLJsonUtil : NSObject
 
-// 获取MTLJSONSerializing的字符串
+// 获取MTLJSONSerializing需要转换的属性字典的字符串
 + (NSString *)getMTLJSONSerializingPropertiesStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray;
 
-+ (NSString *)getMTLPropertyJSONTransformerWithPropertyName:(NSString *)propertyName propertyType:(PropertyType)propertyType;
+// 获取MTLJSONSerializing的属性转换方法字符串
++ (NSString *)getMTLJSONSerializingPropertiesValueTransformerStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray;
+
++ (NSString *)getMTLManagedObjectSerializingStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray entityName:(NSString *)entityName;
+
++ (NSString *)getMTLPropertyJSONTransformerWithModel:(WSPropertyModel *)model;
++ (NSString *)getPropertyTypeNameWithValue:(id)value;
++ (PropertyType)getPropertyTypeWithModel:(WSPropertyModel *)model;
 
 @end

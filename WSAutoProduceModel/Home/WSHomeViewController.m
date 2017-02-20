@@ -17,7 +17,8 @@
 
 #define ClassNameExpress                    @"#className#"
 #define PropertiesExpress                   @"#properties#"
-#define MTLJSONSerializingEXpress           @"#MTLJSONSerializing#"
+#define MTLJSONSerializingExpress           @"#MTLJSONSerializing#"
+#define MTLManagedObjectSerializingExpress  @"#MTLManagedObjectSerializing#"
 
 @interface WSHomeViewController ()
 
@@ -67,6 +68,10 @@
 }
 
 - (IBAction)previewButAction:(id)sender {
+    
+//    NSString *className = self.classNameTextField.stringValue;
+//    NSString *savePath = self.savePathTextField.stringValue;
+//    NSString *jsonStr = self.jsonStrTextView.string;
     
     [self processHFile:^{
         [self processMFile:^{
@@ -362,17 +367,38 @@
                 }
             }
             // 替换MTLJSONSerializing协议属性字符串
-            NSString *JSONSerializingEXpress =  MTLJSONSerializingEXpress;
+            NSString *JSONSerializingEXpress =  MTLJSONSerializingExpress;
             NSRange jsonSerializingRange = [MTemplate rangeOfString:JSONSerializingEXpress options:NSRegularExpressionSearch];
             if (jsonSerializingRange.location != NSNotFound) {
                 [self getPropertiesModelFromJsonStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
                     if (!error) {
-                        NSString *propertyConvertValue = [MTLJsonUtil getMTLJSONSerializingPropertiesStrFromModelArray:modelArray];
+                        NSMutableString *JSONSerializingEXpressStr = [NSMutableString string];
+                        NSString *propertyConvertValueStr = [MTLJsonUtil getMTLJSONSerializingPropertiesStrFromModelArray:modelArray];
+                        NSString *propertyValueTransformStr = [MTLJsonUtil getMTLJSONSerializingPropertiesValueTransformerStrFromModelArray:modelArray];
+                        [JSONSerializingEXpressStr appendFormat:@"%@ \n", propertyConvertValueStr];
+                        [JSONSerializingEXpressStr appendFormat:@"%@ \n", propertyValueTransformStr];
                         [MTemplate deleteCharactersInRange:jsonSerializingRange];
-                        [MTemplate insertString:propertyConvertValue atIndex:jsonSerializingRange.location];
+                        [MTemplate insertString:JSONSerializingEXpressStr atIndex:jsonSerializingRange.location];
                     }
                 }];
             }
+
+            // 替换MTLManagedObjectSerializing协议属性字符串
+            NSString *MTLManagedObjectSerializingEXpress =  MTLManagedObjectSerializingExpress;
+            NSRange managedObjectSerializingRange = [MTemplate rangeOfString:MTLManagedObjectSerializingEXpress options:NSRegularExpressionSearch];
+            if (managedObjectSerializingRange.location != NSNotFound) {
+                [self getPropertiesModelFromJsonStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
+                    if (!error) {
+                        NSMutableString *managedObjectSerializingStr = [NSMutableString string];
+                        NSString *managedObjectSerializing = [MTLJsonUtil getMTLManagedObjectSerializingStrFromModelArray:modelArray entityName:className];
+                        [managedObjectSerializingStr appendFormat:@"%@ \n", managedObjectSerializing];
+                        [MTemplate deleteCharactersInRange:managedObjectSerializingRange];
+                        [MTemplate insertString:managedObjectSerializingStr atIndex:managedObjectSerializingRange.location];
+                    }
+                }];
+            }
+
+            
             // 创建写入.m文件
             self.MFileContent = [NSString stringWithString:MTemplate];
             if (handle) {
@@ -402,10 +428,11 @@
                     id key = [keys objectAtIndex:i];
                     id value = [jsonDic valueForKey:key];
                     NSString *propertyName = key;
-                    NSString *propertyType = [self getPropertyTypeWithValue:value];
+                    NSString *propertyType = [MTLJsonUtil getPropertyTypeNameWithValue:value];
                     WSPropertyModel *model = [[WSPropertyModel alloc] init];
                     model.name = propertyName;
                     model.type = propertyType;
+                    model.value = value;
                     [resultArray addObject:model];
                 }
                 if (handle) {
@@ -447,21 +474,5 @@
         return propertyName;
     }
 }
-
-#pragma mark 获取属性值的类型
-- (NSString *)getPropertyTypeWithValue:(id)value
-{
-    if ([value isKindOfClass:[NSString class]]) {
-        return @"NSString";
-    } else if ([value isKindOfClass:[NSNumber class]]) {
-        return @"NSNumber";
-    } else if ([value isKindOfClass:[NSArray class]]) {
-        return @"NSArray";
-    } else if ([value isKindOfClass:[NSDictionary class]]) {
-        return @"NSDictionary";
-    }
-    return @"NSObject";
-}
-
 
 @end

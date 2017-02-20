@@ -10,7 +10,8 @@
 
 @interface WSPropertyModel : NSObject
 
-@property (strong, nonatomic) NSString *type;
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *type;  // 属性类型名
+@property (strong, nonatomic) NSString *name;  // 属性名
+@property (strong, nonatomic) id value;         // 属性值
 
 @end
