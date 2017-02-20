@@ -12,4 +12,6 @@
 
 + (void)convertJsonStrToObjWithJsonStr:(NSString *)jsonStr handle:(void(^)(id obj, NSError *error))handle;
 
++ (NSString *)convertObjToJson:(id)obj;
+
 @end

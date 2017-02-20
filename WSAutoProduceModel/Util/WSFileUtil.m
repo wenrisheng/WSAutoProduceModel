@@ -34,24 +34,18 @@
     return createSuc;
 }
 
-+ (void)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext handle:(void (^)(NSString *, NSError *))handle
++ (NSString *)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext
 {
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSString *filePath = [mainBundle pathForResource:name ofType:ext];
-    [self getFileContentWithFilePath:filePath handle:handle];
+    return [self getFileContentWithFilePath:filePath];
 }
 
-+ (void)getFileContentWithFilePath:(NSString *)filePath handle:(void(^)(NSString *fileContent, NSError *error))handle
++ (NSString *)getFileContentWithFilePath:(NSString *)filePath
 {
     NSError *readFileError = nil;
     NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
-    if (handle) {
-        if (readFileError) {
-            handle(nil, readFileError);
-        } else {
-            handle(fileContent, nil);
-        }
-    }
+    return fileContent;
 }
 
 @end

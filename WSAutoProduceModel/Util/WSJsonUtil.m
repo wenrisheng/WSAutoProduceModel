@@ -23,4 +23,20 @@
     }
 }
 
++ (NSString *)convertObjToJson:(id)obj
+{
+    if (!obj) {
+        return nil;
+    }
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:obj
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (error) {
+        NSLog(@"对象转Json解析失败：%@",error);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
 @end

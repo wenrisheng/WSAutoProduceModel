@@ -12,8 +12,8 @@
 
 + (BOOL)createFileAtFilePath:(NSString *)filePath contents:(NSData *)data attributes:(NSDictionary<NSString *, id> *)attr;
 
-+ (void)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext handle:(void(^)(NSString *fileContent, NSError *error))handle;
++ (NSString *)getFileContentInBundleWithResource:(NSString *)name ofType:(NSString *)ext;
 
-+ (void)getFileContentWithFilePath:(NSString *)filePath handle:(void(^)(NSString *fileContent, NSError *error))handle;
++ (NSString *)getFileContentWithFilePath:(NSString *)filePath;
 
 @end

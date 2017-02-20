@@ -24,7 +24,7 @@
 		A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */; };
 		A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */; };
 		A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */; };
-		A22DA25D1E57022200956000 /* MTLJsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A22DA25C1E57022200956000 /* MTLJsonUtil.m */; };
+		A22DA25D1E57022200956000 /* JsonFormatBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A22DA25C1E57022200956000 /* JsonFormatBiz.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,8 +58,8 @@
 		A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeViewController.m; sourceTree = "<group>"; };
 		A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewViewController.xib; sourceTree = "<group>"; };
 		A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewWindowController.xib; sourceTree = "<group>"; };
-		A22DA25B1E57022200956000 /* MTLJsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLJsonUtil.h; sourceTree = "<group>"; };
-		A22DA25C1E57022200956000 /* MTLJsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLJsonUtil.m; sourceTree = "<group>"; };
+		A22DA25B1E57022200956000 /* JsonFormatBiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonFormatBiz.h; sourceTree = "<group>"; };
+		A22DA25C1E57022200956000 /* JsonFormatBiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonFormatBiz.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +185,8 @@
 		A22DA25A1E57020200956000 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A22DA25B1E57022200956000 /* MTLJsonUtil.h */,
-				A22DA25C1E57022200956000 /* MTLJsonUtil.m */,
+				A22DA25B1E57022200956000 /* JsonFormatBiz.h */,
+				A22DA25C1E57022200956000 /* JsonFormatBiz.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */,
 				A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */,
 				A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */,
-				A22DA25D1E57022200956000 /* MTLJsonUtil.m in Sources */,
+				A22DA25D1E57022200956000 /* JsonFormatBiz.m in Sources */,
 				A21ACFCF1CF7E9A600772EC7 /* WSPropertyModel.m in Sources */,
 				A21ACF5D1CF6AB0C00772EC7 /* main.m in Sources */,
 				A21ACF5A1CF6AB0C00772EC7 /* AppDelegate.m in Sources */,
