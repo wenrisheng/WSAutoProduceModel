@@ -218,14 +218,78 @@
 
 + (NSString *)getMTLJSONSerializingPropertiesValueTransformerStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray
 {
+//    NSMutableString *result = [NSMutableString string];
+//    NSInteger count = modelArray.count;
+//    for (int i = 0; i < count; i++) {
+//        WSPropertyModel *model = [modelArray objectAtIndex:i];
+//        NSString *propertyValueTransformerStr = [self getMTLPropertyJSONTransformerWithModel:model];
+//        [result appendFormat:@"%@ \n", propertyValueTransformerStr];
+//    }
+//    return result;
     NSMutableString *result = [NSMutableString string];
-    NSInteger count = modelArray.count;
-    for (int i = 0; i < count; i++) {
-        WSPropertyModel *model = [modelArray objectAtIndex:i];
-        NSString *propertyValueTransformerStr = [self getMTLPropertyJSONTransformerWithModel:model];
-        [result appendFormat:@"%@ \n", propertyValueTransformerStr];
+    [result appendString:@"+ (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {\n"];
+    [result appendString:@"    NSValueTransformer *valueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error)\n"];
+    [result appendString:@"        {\n"];
+    [result appendString:@"            if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {\n"];
+    [result appendString:@"                return value;\n"];
+    [result appendString:@"            }\n"];
+    // array
+    [result appendString:@"            if ([value isKindOfClass:[NSArray class]]) {\n"];
+    [result appendString:@"                NSError *error = nil;\n"];
+    [result appendString:@"                Class cls = nil;\n"];
+    for (WSPropertyModel *model in modelArray) {
+       PropertyType propertyType = [self getPropertyTypeWithModel:model];
+        if (propertyType == PropertyTypeArray) {
+            [result appendString:[NSString stringWithFormat:@"                if ([key isEqualToString:@\"%@\"]) {\n", model.name]];
+            [result appendString:[NSString stringWithFormat:@"                    cls = [%@ class];\n", [model.name capitalizedStringOnyFirstCharacter]]];
+            [result appendString:[NSString stringWithFormat:@"                }\n"]];
+        }
     }
+    [result appendString:@"                NSArray *array = [MTLJSONAdapter modelsOfClass:cls fromJSONArray:value error:&error];\n"];
+    [result appendString:@"                return array;\n"];
+    [result appendString:@"            }\n"];
+    // obj
+    [result appendString:@"            if ([value isKindOfClass:[NSDictionary class]]) {\n"];
+    [result appendString:@"                NSError *error = nil;\n"];
+    [result appendString:@"                Class cls = nil;\n"];
+    for (WSPropertyModel *model in modelArray) {
+        PropertyType propertyType = [self getPropertyTypeWithModel:model];
+        if (propertyType == PropertyTypeObject) {
+            [result appendString:[NSString stringWithFormat:@"                if ([key isEqualToString:@\"%@\"]) {\n", model.name]];
+            [result appendString:[NSString stringWithFormat:@"                    cls = [%@ class];\n", [model.name capitalizedStringOnyFirstCharacter]]];
+            [result appendString:[NSString stringWithFormat:@"                }\n"]];
+        }
+    }
+    [result appendString:@"                NSArray *model = [MTLJSONAdapter modelOfClass:cls fromJSONDictionary:value error:&error];\n"];
+    [result appendString:@"                return model;\n"];
+    [result appendString:@"            }\n"];
+    [result appendString:@"            return value;\n"];
+    [result appendString:@"        } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error)\n"];
+    [result appendString:@"        {\n"];
+    [result appendString:@"            if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {\n"];
+    [result appendString:@"                return value;\n"];
+    [result appendString:@"            }\n"];
+    [result appendString:@"            if ([value isKindOfClass:[NSArray class]]) {\n"];
+    [result appendString:@"                NSError *error = nil;\n"];
+    [result appendString:@"                NSArray *array = [MTLJSONAdapter JSONArrayFromModels:value error:&error];\n"];
+    [result appendString:@"                return array;\n"];
+    [result appendString:@"            }\n"];
+    for (WSPropertyModel *model in modelArray) {
+        PropertyType propertyType = [self getPropertyTypeWithModel:model];
+        if (propertyType == PropertyTypeObject) {
+            [result appendString:[NSString stringWithFormat:@"            if ([value isKindOfClass:[%@ class]]) {\n", [model.name capitalizedStringOnyFirstCharacter]]];
+            [result appendString:[NSString stringWithFormat:@"                NSError *error = nil;\n"]];
+            [result appendString:[NSString stringWithFormat:@"                NSDictionary *model = [MTLJSONAdapter JSONDictionaryFromModel:value error:&error];\n"]];
+            [result appendString:[NSString stringWithFormat:@"                return model;\n"]];
+            [result appendString:[NSString stringWithFormat:@"            }\n"]];
+        }
+    }
+    [result appendString:@"            return value;\n"];
+    [result appendString:@"        }];\n"];
+    [result appendString:@"    return valueTransformer;\n"];
+    [result appendString:@"}\n"];
     return result;
+    
 }
 
 + (NSString *)getMTLManagedObjectSerializingStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray entityName:(NSString *)entityName
@@ -390,13 +454,13 @@
             [result appendFormat:@"                     DLog(@\"%@字典转模型失败！error:%%@\", jsonError); \n", propertyName];
             [result appendFormat:@"              } \n"];
             [result appendFormat:@"              return model; \n"];
-            [result appendFormat:@"          } \n"];
+            [result appendFormat:@"        } \n"];
         }
             break;
         case PropertyTypeObject:
         {
             [result appendFormat:@"       if (![value isKindOfClass:[NSDictionary class]]) { \n"];
-             [result appendFormat:@"              return nil; \n"];
+             [result appendFormat:@"           return nil; \n"];
             [result appendFormat:@"        } else { \n"];
             [result appendFormat:@"            NSError *jsonError = nil; \n"];
             [result appendFormat:@"            id model = [MTLJSONAdapter modelOfClass:[%@ class] fromJSONDictionary:value error:&jsonError]; \n", [propertyName capitalizedStringOnyFirstCharacter]];
@@ -404,7 +468,7 @@
             [result appendFormat:@"               DLog(@\"%@字典转模型失败！error:%%@\", jsonError); \n", propertyName];
             [result appendFormat:@"            } \n"];
             [result appendFormat:@"            return model; \n"];
-            [result appendFormat:@"          } \n"];
+            [result appendFormat:@"        } \n"];
         }
             break;
         case PropertyTypeUnknow:
