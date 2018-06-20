@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CD321FC20DA315F00ED56D1 /* WSPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */; };
+		7CD3220C20DA319B00ED56D1 /* NSView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220020DA319A00ED56D1 /* NSView+Util.m */; };
+		7CD3220D20DA319B00ED56D1 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220120DA319A00ED56D1 /* NSString+Util.m */; };
+		7CD3220E20DA319B00ED56D1 /* NSTextView+XW.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220420DA319A00ED56D1 /* NSTextView+XW.m */; };
+		7CD3220F20DA319B00ED56D1 /* WSNumUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220820DA319B00ED56D1 /* WSNumUtil.m */; };
+		7CD3221020DA319B00ED56D1 /* WSJsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220920DA319B00ED56D1 /* WSJsonUtil.m */; };
+		7CD3221120DA319B00ED56D1 /* WSFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220A20DA319B00ED56D1 /* WSFileUtil.m */; };
 		A21ACF5A1CF6AB0C00772EC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACF591CF6AB0C00772EC7 /* AppDelegate.m */; };
 		A21ACF5D1CF6AB0C00772EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACF5C1CF6AB0C00772EC7 /* main.m */; };
 		A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACF621CF6AB0C00772EC7 /* Document.m */; };
@@ -15,19 +22,30 @@
 		A21ACF9E1CF6D31B00772EC7 /* WSNormalTemplateM.txt in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF991CF6D22E00772EC7 /* WSNormalTemplateM.txt */; };
 		A21ACF9F1CF6DBDD00772EC7 /* WSNormalTemplateH.txt in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF981CF6D22E00772EC7 /* WSNormalTemplateH.txt */; };
 		A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFC31CF7E97C00772EC7 /* NSObject+WSClass.m */; };
-		A21ACFCB1CF7E97C00772EC7 /* WSFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFC71CF7E97C00772EC7 /* WSFileUtil.m */; };
-		A21ACFCC1CF7E97C00772EC7 /* WSJsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFC91CF7E97C00772EC7 /* WSJsonUtil.m */; };
-		A21ACFCF1CF7E9A600772EC7 /* WSPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFCE1CF7E9A600772EC7 /* WSPropertyModel.m */; };
 		A21ACFD41CF7F02400772EC7 /* WSPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFD21CF7F02400772EC7 /* WSPreviewViewController.m */; };
 		A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFD71CF7F58900772EC7 /* WSPreviewWindowController.m */; };
 		A21ACFDE1CF83DCC00772EC7 /* WSHomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */; };
 		A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */; };
 		A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */; };
 		A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */; };
-		A22DA25D1E57022200956000 /* JsonFormatBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A22DA25C1E57022200956000 /* JsonFormatBiz.m */; };
+		A22DA25D1E57022200956000 /* JsonToCodeBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A22DA25C1E57022200956000 /* JsonToCodeBiz.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPropertyModel.m; sourceTree = "<group>"; };
+		7CD321FB20DA315F00ED56D1 /* WSPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPropertyModel.h; sourceTree = "<group>"; };
+		7CD321FE20DA319A00ED56D1 /* WSJsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSJsonUtil.h; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSJsonUtil.h; sourceTree = "<group>"; };
+		7CD3220020DA319A00ED56D1 /* NSView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Util.m"; sourceTree = "<group>"; };
+		7CD3220120DA319A00ED56D1 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		7CD3220320DA319A00ED56D1 /* NSTextView+XW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+XW.h"; sourceTree = "<group>"; };
+		7CD3220420DA319A00ED56D1 /* NSTextView+XW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+XW.m"; sourceTree = "<group>"; };
+		7CD3220520DA319A00ED56D1 /* NSView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Util.h"; sourceTree = "<group>"; };
+		7CD3220620DA319A00ED56D1 /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		7CD3220720DA319A00ED56D1 /* WSNumUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSNumUtil.h; sourceTree = "<group>"; };
+		7CD3220820DA319B00ED56D1 /* WSNumUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSNumUtil.m; sourceTree = "<group>"; };
+		7CD3220920DA319B00ED56D1 /* WSJsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSJsonUtil.m; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSJsonUtil.m; sourceTree = "<group>"; };
+		7CD3220A20DA319B00ED56D1 /* WSFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSFileUtil.m; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSFileUtil.m; sourceTree = "<group>"; };
+		7CD3220B20DA319B00ED56D1 /* WSFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSFileUtil.h; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSFileUtil.h; sourceTree = "<group>"; };
 		A21ACF551CF6AB0C00772EC7 /* WSAutoProduceModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSAutoProduceModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21ACF581CF6AB0C00772EC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A21ACF591CF6AB0C00772EC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,12 +60,6 @@
 		A21ACFBD1CF7E2CA00772EC7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A21ACFC21CF7E97C00772EC7 /* NSObject+WSClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WSClass.h"; sourceTree = "<group>"; };
 		A21ACFC31CF7E97C00772EC7 /* NSObject+WSClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WSClass.m"; sourceTree = "<group>"; };
-		A21ACFC61CF7E97C00772EC7 /* WSFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSFileUtil.h; sourceTree = "<group>"; };
-		A21ACFC71CF7E97C00772EC7 /* WSFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSFileUtil.m; sourceTree = "<group>"; };
-		A21ACFC81CF7E97C00772EC7 /* WSJsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSJsonUtil.h; sourceTree = "<group>"; };
-		A21ACFC91CF7E97C00772EC7 /* WSJsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSJsonUtil.m; sourceTree = "<group>"; };
-		A21ACFCD1CF7E9A600772EC7 /* WSPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPropertyModel.h; sourceTree = "<group>"; };
-		A21ACFCE1CF7E9A600772EC7 /* WSPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPropertyModel.m; sourceTree = "<group>"; };
 		A21ACFD11CF7F02400772EC7 /* WSPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPreviewViewController.h; sourceTree = "<group>"; };
 		A21ACFD21CF7F02400772EC7 /* WSPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPreviewViewController.m; sourceTree = "<group>"; };
 		A21ACFD61CF7F58900772EC7 /* WSPreviewWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPreviewWindowController.h; sourceTree = "<group>"; };
@@ -58,8 +70,8 @@
 		A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeViewController.m; sourceTree = "<group>"; };
 		A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewViewController.xib; sourceTree = "<group>"; };
 		A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewWindowController.xib; sourceTree = "<group>"; };
-		A22DA25B1E57022200956000 /* JsonFormatBiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonFormatBiz.h; sourceTree = "<group>"; };
-		A22DA25C1E57022200956000 /* JsonFormatBiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonFormatBiz.m; sourceTree = "<group>"; };
+		A22DA25B1E57022200956000 /* JsonToCodeBiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToCodeBiz.h; sourceTree = "<group>"; };
+		A22DA25C1E57022200956000 /* JsonToCodeBiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonToCodeBiz.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7CD321FD20DA316200ED56D1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				7CD321FB20DA315F00ED56D1 /* WSPropertyModel.h */,
+				7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		7CD321FF20DA319A00ED56D1 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7CD3220220DA319A00ED56D1 /* NSTextView+XW */,
+				A21ACFC21CF7E97C00772EC7 /* NSObject+WSClass.h */,
+				A21ACFC31CF7E97C00772EC7 /* NSObject+WSClass.m */,
+				7CD3220020DA319A00ED56D1 /* NSView+Util.m */,
+				7CD3220120DA319A00ED56D1 /* NSString+Util.m */,
+				7CD3220520DA319A00ED56D1 /* NSView+Util.h */,
+				7CD3220620DA319A00ED56D1 /* NSString+Util.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7CD3220220DA319A00ED56D1 /* NSTextView+XW */ = {
+			isa = PBXGroup;
+			children = (
+				7CD3220320DA319A00ED56D1 /* NSTextView+XW.h */,
+				7CD3220420DA319A00ED56D1 /* NSTextView+XW.m */,
+			);
+			path = "NSTextView+XW";
+			sourceTree = "<group>";
+		};
 		A21ACF4C1CF6AB0C00772EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -92,8 +136,6 @@
 		A21ACF571CF6AB0C00772EC7 /* WSAutoProduceModel */ = {
 			isa = PBXGroup;
 			children = (
-				A21ACFC11CF7E97C00772EC7 /* Category */,
-				A21ACFC41CF7E97C00772EC7 /* Model */,
 				A21ACFC51CF7E97C00772EC7 /* Util */,
 				A21ACF971CF6D22400772EC7 /* Templates */,
 				A21ACFDB1CF83DB200772EC7 /* Home */,
@@ -128,31 +170,16 @@
 			path = Templates;
 			sourceTree = "<group>";
 		};
-		A21ACFC11CF7E97C00772EC7 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				A21ACFC21CF7E97C00772EC7 /* NSObject+WSClass.h */,
-				A21ACFC31CF7E97C00772EC7 /* NSObject+WSClass.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		A21ACFC41CF7E97C00772EC7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A21ACFCD1CF7E9A600772EC7 /* WSPropertyModel.h */,
-				A21ACFCE1CF7E9A600772EC7 /* WSPropertyModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		A21ACFC51CF7E97C00772EC7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				A21ACFC61CF7E97C00772EC7 /* WSFileUtil.h */,
-				A21ACFC71CF7E97C00772EC7 /* WSFileUtil.m */,
-				A21ACFC81CF7E97C00772EC7 /* WSJsonUtil.h */,
-				A21ACFC91CF7E97C00772EC7 /* WSJsonUtil.m */,
+				7CD321FF20DA319A00ED56D1 /* Category */,
+				7CD3220B20DA319B00ED56D1 /* WSFileUtil.h */,
+				7CD3220A20DA319B00ED56D1 /* WSFileUtil.m */,
+				7CD321FE20DA319A00ED56D1 /* WSJsonUtil.h */,
+				7CD3220920DA319B00ED56D1 /* WSJsonUtil.m */,
+				7CD3220720DA319A00ED56D1 /* WSNumUtil.h */,
+				7CD3220820DA319B00ED56D1 /* WSNumUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -173,6 +200,7 @@
 		A21ACFDB1CF83DB200772EC7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7CD321FD20DA316200ED56D1 /* Entity */,
 				A22DA25A1E57020200956000 /* Model */,
 				A21ACFDC1CF83DCC00772EC7 /* WSHomeWindowController.h */,
 				A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */,
@@ -185,8 +213,8 @@
 		A22DA25A1E57020200956000 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A22DA25B1E57022200956000 /* JsonFormatBiz.h */,
-				A22DA25C1E57022200956000 /* JsonFormatBiz.m */,
+				A22DA25B1E57022200956000 /* JsonToCodeBiz.h */,
+				A22DA25C1E57022200956000 /* JsonToCodeBiz.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,7 +245,7 @@
 		A21ACF4D1CF6AB0C00772EC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = wenrisheng;
 				TargetAttributes = {
 					A21ACF541CF6AB0C00772EC7 = {
@@ -264,16 +292,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A21ACFCB1CF7E97C00772EC7 /* WSFileUtil.m in Sources */,
-				A21ACFCC1CF7E97C00772EC7 /* WSJsonUtil.m in Sources */,
 				A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */,
 				A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */,
 				A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */,
-				A22DA25D1E57022200956000 /* JsonFormatBiz.m in Sources */,
-				A21ACFCF1CF7E9A600772EC7 /* WSPropertyModel.m in Sources */,
+				7CD3220E20DA319B00ED56D1 /* NSTextView+XW.m in Sources */,
+				A22DA25D1E57022200956000 /* JsonToCodeBiz.m in Sources */,
+				7CD3221020DA319B00ED56D1 /* WSJsonUtil.m in Sources */,
+				7CD3220D20DA319B00ED56D1 /* NSString+Util.m in Sources */,
 				A21ACF5D1CF6AB0C00772EC7 /* main.m in Sources */,
+				7CD321FC20DA315F00ED56D1 /* WSPropertyModel.m in Sources */,
+				7CD3221120DA319B00ED56D1 /* WSFileUtil.m in Sources */,
+				7CD3220F20DA319B00ED56D1 /* WSNumUtil.m in Sources */,
 				A21ACF5A1CF6AB0C00772EC7 /* AppDelegate.m in Sources */,
 				A21ACFDE1CF83DCC00772EC7 /* WSHomeWindowController.m in Sources */,
+				7CD3220C20DA319B00ED56D1 /* NSView+Util.m in Sources */,
 				A21ACFD41CF7F02400772EC7 /* WSPreviewViewController.m in Sources */,
 				A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */,
 			);
@@ -302,14 +334,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -348,14 +388,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -387,7 +435,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WSAutoProduceModel/PrefixHeader.pch";
 				INFOPLIST_FILE = WSAutoProduceModel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.top.common.WSAutoProduceModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -402,7 +450,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WSAutoProduceModel/PrefixHeader.pch";
 				INFOPLIST_FILE = WSAutoProduceModel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.top.common.WSAutoProduceModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

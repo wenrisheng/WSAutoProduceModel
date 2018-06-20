@@ -4,51 +4,50 @@
 
 
 
-
 //
-//  MTLJsonUtil.m
-//  WSAutoProduceModel
+//  JsonToCodeBiz.m
+//  WSXcodePlugin
 //
-//  Created by wenrisheng on 17/2/17.
-//  Copyright © 2017年 wenrisheng. All rights reserved.
+//  Created by wenrisheng on 17/2/21.
+//  Copyright © 2017年 wrs. All rights reserved.
 //
 
-#import "JsonFormatBiz.h"
+#import "JsonToCodeBiz.h"
 
-@implementation JsonFormatBiz
+@implementation JsonToCodeBiz
 
-+ (void)processJsonObjWithObj:(id)obj key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
++ (void)processJsonObjWithObj:(id)obj key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress importExpress:(NSString *)importExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
 {
     if ([obj isKindOfClass:[NSString class]]) {
-       [self processJsonStrWithJsonStr:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+        [self processJsonStrWithJsonStr:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
     } else if ([obj isKindOfClass:[NSDictionary class]]) {
-        [self processJsonDictionaryWithDictionary:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+        [self processJsonDictionaryWithDictionary:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
     } else if ([obj isKindOfClass:[NSArray class]]) {
-        [self processJsonArrayWithArray:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+        [self processJsonArrayWithArray:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
     }
 }
 
-+ (void)processJsonStrWithJsonStr:(NSString *)jsonStr key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
++ (void)processJsonStrWithJsonStr:(NSString *)jsonStr key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress importExpress:(NSString *)importExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
 {
     [WSJsonUtil convertJsonStrToObjWithJsonStr:jsonStr handle:^(id obj, NSError *error) {
         if (obj) {
             if ([obj isKindOfClass:[NSDictionary class]]) { // 字典
-                [self processJsonDictionaryWithDictionary:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+                [self processJsonDictionaryWithDictionary:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
             } else if([obj isKindOfClass:[NSArray class]]) { // 数组
-               [self processJsonArrayWithArray:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+                [self processJsonArrayWithArray:obj key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress  JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
             }
         } else {
             NSLog(@"输入的json格式不对！");
         }
     }];
-
+    
 }
 
-+ (void)processJsonDictionaryWithDictionary:(NSDictionary *)valueDic key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
++ (void)processJsonDictionaryWithDictionary:(NSDictionary *)valueDic key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress importExpress:(NSString *)importExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
 {
     NSString *dicStr = [WSJsonUtil convertObjToJson:valueDic];
-    NSString *hFileContent = [JsonFormatBiz getHFileContentWithClassName:key classNameExpress:classNameExpress propertiesExpress:propertiesExpress dicStr:dicStr hTempleContent:hTempleContent];
-    NSString *mFileContent = [JsonFormatBiz getMFileContentWithClassNameExpress:classNameExpress className:key dicStr:dicStr JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress mTempleContent:mTempleContent];
+    NSString *hFileContent = [self getHFileContentWithClassName:key classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress dicStr:dicStr hTempleContent:hTempleContent];
+    NSString *mFileContent = [self getMFileContentWithClassNameExpress:classNameExpress className:key dicStr:dicStr JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress mTempleContent:mTempleContent];
     if (callBack) {
         callBack(hFileContent, mFileContent, key);
     }
@@ -59,36 +58,37 @@
         NSString *subKey = [allKeys objectAtIndex:i];
         id subValue = [valueDic valueForKey:subKey];
         if ([subValue isKindOfClass:[NSDictionary class]]) {
-            [self processJsonDictionaryWithDictionary:subValue key:subKey hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
-
+            [self processJsonDictionaryWithDictionary:subValue key:subKey hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+            
         } else if ([subValue isKindOfClass:[NSArray class]]) {
-            [self processJsonArrayWithArray:subValue key:subKey hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+            [self processJsonArrayWithArray:subValue key:subKey hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
         }
     }
 }
 
-+ (void)processJsonArrayWithArray:(NSArray *)valueArray key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
++ (void)processJsonArrayWithArray:(NSArray *)valueArray key:(NSString *)key hTempleContent:(NSString *)hTempleContent mTempleContent:(NSString *)mTempleContent classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress importExpress:(NSString *)importExpress JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress callBack:(void(^)(NSString *hFileContent, NSString *mFileContent, NSString *key))callBack
 {
     if (valueArray.count > 0) {
         id value = [valueArray objectAtIndex:0];
         if ([value isKindOfClass:[NSDictionary class]]) {
-            [self processJsonDictionaryWithDictionary:value key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+            [self processJsonDictionaryWithDictionary:value key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
         } else if([value isKindOfClass:[NSArray class]]){
-            [self processJsonArrayWithArray:value key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
+            [self processJsonArrayWithArray:value key:key hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:classNameExpress propertiesExpress:propertiesExpress importExpress:importExpress JSONSerializingEXpress:JSONSerializingEXpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingEXpress callBack:callBack];
         }
     }
 }
 
 
 #pragma mark - 处理.h 文件
-+ (NSString *)getHFileContentWithClassName:(NSString *)className classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress dicStr:(NSString *)jsonStr hTempleContent:(NSString *)hTempleContent
++ (NSString *)getHFileContentWithClassName:(NSString *)className classNameExpress:(NSString *)classNameExpress propertiesExpress:(NSString *)propertiesExpress importExpress:(NSString *)importExpress dicStr:(NSString *)jsonStr hTempleContent:(NSString *)hTempleContent
 {
+    className = [className capitalizedStringOnyFirstCharacter];
     NSMutableString *HTemplate = [NSMutableString stringWithString:hTempleContent];
     // 替换类名
     NSRange classNameRange = [HTemplate rangeOfString:classNameExpress options:NSRegularExpressionSearch];
     if (classNameRange.location != NSNotFound) {
         [HTemplate deleteCharactersInRange:classNameRange];
-        [HTemplate insertString:[className capitalizedString] atIndex:classNameRange.location];
+        [HTemplate insertString:className  atIndex:classNameRange.location];
         NSLog(@"已经替换完.h类名");
     } else {
         NSLog(@".h模板文件没有发现类名表达式");
@@ -105,6 +105,33 @@
                 [HTemplate deleteCharactersInRange:propertiesRange];
                 [HTemplate insertString:propertyConvertValue atIndex:propertiesRange.location];
                 NSLog(@"已经替换完.h属性");
+                
+                // 替换import
+                NSMutableString *importStr = [NSMutableString string];
+                for (WSPropertyModel *model in modelArray) {
+                    PropertyType propertyType = [self getPropertyTypeWithValue:model.value];
+                    switch (propertyType) {
+                        case PropertyTypeArray:
+                        case PropertyTypeObject:
+                        {
+                            NSString *propertyImportStr = [NSString stringWithFormat:@"#import \"%@.h\"", [model.name capitalizedStringOnyFirstCharacter]];
+                            [importStr appendFormat:@"%@\n",propertyImportStr];
+                        }
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                }
+                // 替换类名
+                NSRange importRange = [HTemplate rangeOfString:importExpress options:NSRegularExpressionSearch];
+                if (importRange.location != NSNotFound) {
+                    [HTemplate deleteCharactersInRange:importRange];
+                    [HTemplate insertString:importStr  atIndex:importRange.location];
+                    NSLog(@"已经替换完.h文件的import");
+                } else {
+                    NSLog(@".h模板文件没有发现import表达式");
+                }
             }
             
         }];
@@ -117,13 +144,14 @@
 #pragma mark - 处理.m 文件
 + (NSString *)getMFileContentWithClassNameExpress:(NSString *)classNameExpress className:(NSString *)className dicStr:(NSString *)jsonStr JSONSerializingEXpress:(NSString *)JSONSerializingEXpress MTLManagedObjectSerializingEXpress:(NSString *)MTLManagedObjectSerializingEXpress mTempleContent:(NSString *)mTempleContent
 {
+    className = [className capitalizedStringOnyFirstCharacter];
     NSMutableString *MTemplate = [NSMutableString stringWithString:mTempleContent];
     while (YES) {
         // 替换类名
         NSRange classNameRange = [MTemplate rangeOfString:classNameExpress options:NSRegularExpressionSearch];
         if (classNameRange.location != NSNotFound) {
             [MTemplate deleteCharactersInRange:classNameRange];
-            [MTemplate insertString:[className capitalizedString] atIndex:classNameRange.location];
+            [MTemplate insertString:className atIndex:classNameRange.location];
         } else {
             NSLog(@"已经替换完.m的头文件引入和类名");
             break;
@@ -135,8 +163,8 @@
         [self getPropertiesModelFromJsonDicStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
             if (!error) {
                 NSMutableString *JSONSerializingEXpressStr = [NSMutableString string];
-                NSString *propertyConvertValueStr = [JsonFormatBiz getMTLJSONSerializingPropertiesStrFromModelArray:modelArray];
-                NSString *propertyValueTransformStr = [JsonFormatBiz getMTLJSONSerializingPropertiesValueTransformerStrFromModelArray:modelArray];
+                NSString *propertyConvertValueStr = [self getMTLJSONSerializingPropertiesStrFromModelArray:modelArray];
+                NSString *propertyValueTransformStr = [self getMTLJSONSerializingPropertiesValueTransformerStrFromModelArray:modelArray];
                 [JSONSerializingEXpressStr appendFormat:@"%@ \n", propertyConvertValueStr];
                 [JSONSerializingEXpressStr appendFormat:@"%@ \n", propertyValueTransformStr];
                 [MTemplate deleteCharactersInRange:jsonSerializingRange];
@@ -151,7 +179,7 @@
         [self getPropertiesModelFromJsonDicStr:jsonStr handle:^(NSArray<WSPropertyModel *> *modelArray, NSError *error) {
             if (!error) {
                 NSMutableString *managedObjectSerializingStr = [NSMutableString string];
-                NSString *managedObjectSerializing = [JsonFormatBiz getMTLManagedObjectSerializingStrFromModelArray:modelArray entityName:className];
+                NSString *managedObjectSerializing = [self getMTLManagedObjectSerializingStrFromModelArray:modelArray entityName:className];
                 [managedObjectSerializingStr appendFormat:@"%@ \n", managedObjectSerializing];
                 [MTemplate deleteCharactersInRange:managedObjectSerializingRange];
                 [MTemplate insertString:managedObjectSerializingStr atIndex:managedObjectSerializingRange.location];
@@ -161,6 +189,7 @@
     return MTemplate;
 }
 
+#pragma mark -
 + (NSString *)getMTLJSONSerializingPropertiesStrFromModelArray:(NSArray<WSPropertyModel *> *)modelArray
 {
     NSMutableString *result = [NSMutableString string];
@@ -249,7 +278,7 @@
                     id key = [keys objectAtIndex:i];
                     id value = [jsonDic valueForKey:key];
                     NSString *propertyName = key;
-                    NSString *propertyType = [JsonFormatBiz getPropertyTypeNameWithValue:value];
+                    NSString *propertyType = [self getPropertyTypeNameWithValue:value];
                     WSPropertyModel *model = [[WSPropertyModel alloc] init];
                     model.name = propertyName;
                     model.type = propertyType;
@@ -277,6 +306,21 @@
         NSString *propertyName = model.name;
         propertyName = [self converPropertyName:propertyName];
         NSString *propertyType = model.type;
+       PropertyType type = [self getPropertyTypeWithModel:model];
+        switch (type) {
+            case PropertyTypeArray:
+            {
+                propertyType = [NSString stringWithFormat:@"NSArray<%@ *>", [propertyName capitalizedStringOnyFirstCharacter]];
+            }
+                break;
+            case PropertyTypeObject:
+            {
+                propertyType = [NSString stringWithFormat:@"%@", [propertyName capitalizedStringOnyFirstCharacter]];
+            }
+                break;
+            default:
+                break;
+        }
         NSString *propertyExpress = [NSString stringWithFormat:@"@property (strong, nonatomic) %@ *%@;", propertyType, propertyName];
         [result appendString:propertyExpress];
         if (i != count - 1) {
@@ -288,8 +332,16 @@
 
 + (NSString *)converPropertyName:(NSString *)propertyName
 {
-    if ([propertyName isEqualToString:@"id"]) {
-        return @"_id";
+    NSArray *saveKeyWordArray = @[@"id", @"description"]; // OC保留字
+    BOOL equalKeyWork = NO;
+    for (NSString *keyWork in saveKeyWordArray) {
+        if ([keyWork isEqualToString:propertyName]) {
+            equalKeyWork = YES;
+            break;
+        }
+    }
+    if (equalKeyWork) {
+        return [NSString stringWithFormat:@"_%@", propertyName];
     } else {
         return propertyName;
     }
@@ -298,6 +350,7 @@
 + (NSString *)getMTLPropertyJSONTransformerWithModel:(WSPropertyModel *)model
 {
     NSString *propertyName = model.name;
+    
     PropertyType propertyType = [self getPropertyTypeWithModel:model];
     NSMutableString *result = [NSMutableString string];
     [result appendFormat:@"+ (NSValueTransformer *)%@JSONTransformer \n", propertyName];
@@ -307,17 +360,20 @@
     switch (propertyType) {
         case PropertyTypeString:
         {
-            [result appendFormat:@"                                                if ([value isEqualToString:@\"NULL\"]) { \n"];
-            [result appendFormat:@"                                 return nil; \n"];
-            [result appendFormat:@"                             } else { \n"];
-            [result appendFormat:@"                                 return value; \n"];
-            [result appendFormat:@"                             } \n"];
+            [result appendFormat:@"         NSString *tempStr = value; \n"];
+            [result appendFormat:@"         if (![value isKindOfClass:[NSString class]]) { \n"];
+            [result appendFormat:@"              return nil; \n"];
+            [result appendFormat:@"         } else if ([[tempStr uppercaseString] isEqualToString:@\"NULL\"]) { \n"];
+            [result appendFormat:@"              return nil; \n"];
+            [result appendFormat:@"         } else { \n"];
+            [result appendFormat:@"              return value; \n"];
+            [result appendFormat:@"         } \n"];
         }
             break;
         case PropertyTypeNumber:
         {
-            [result appendFormat:@"        if ([value isKindOfClass:[NSString class]]) { \n"];
-            [result appendFormat:@"            return @(0); \n"];
+            [result appendFormat:@"        if (![value isKindOfClass:[NSNumber class]]) { \n"];
+            [result appendFormat:@"            return nil; \n"];
             [result appendFormat:@"        } else { \n"];
             [result appendFormat:@"            return value; \n"];
             [result appendFormat:@"        } \n"];
@@ -326,19 +382,29 @@
         case PropertyTypeArray:
         {
             [result appendFormat:@"        NSError *jsonError = nil; \n"];
-            [result appendFormat:@"        id model = [MTLJSONAdapter modelOfClass:[%@ class] fromJSONArray:value error:&jsonError]; \n", propertyName];
-            [result appendFormat:@"        if (jsonError) { \n"];
-            [result appendFormat:@"            DLog(@\"%@字典转模型失败！error:%%@:jsonError\"); \n", propertyName];
-            [result appendFormat:@"        } \n"];
+            [result appendFormat:@"        if (![value isKindOfClass:[NSArray class]]) { \n"];
+            [result appendFormat:@"              return nil; \n"];
+            [result appendFormat:@"        } else { \n"];
+            [result appendFormat:@"              id model = [MTLJSONAdapter modelsOfClass:[%@ class] fromJSONArray:value error:&jsonError]; \n", [propertyName capitalizedStringOnyFirstCharacter]];
+            [result appendFormat:@"              if (jsonError) { \n"];
+            [result appendFormat:@"                     DLog(@\"%@字典转模型失败！error:%%@\", jsonError); \n", propertyName];
+            [result appendFormat:@"              } \n"];
+            [result appendFormat:@"              return model; \n"];
+            [result appendFormat:@"          } \n"];
         }
             break;
         case PropertyTypeObject:
         {
-            [result appendFormat:@"        NSError *jsonError = nil; \n"];
-            [result appendFormat:@"        id model = [MTLJSONAdapter modelOfClass:[%@ class] fromJSONDictionary:value error:&jsonError]; \n", propertyName];
-            [result appendFormat:@"        if (jsonError) { \n"];
-            [result appendFormat:@"            DLog(@\"%@字典转模型失败！error:%%@:jsonError\"); \n", propertyName];
-            [result appendFormat:@"        } \n"];
+            [result appendFormat:@"       if (![value isKindOfClass:[NSDictionary class]]) { \n"];
+             [result appendFormat:@"              return nil; \n"];
+            [result appendFormat:@"        } else { \n"];
+            [result appendFormat:@"            NSError *jsonError = nil; \n"];
+            [result appendFormat:@"            id model = [MTLJSONAdapter modelOfClass:[%@ class] fromJSONDictionary:value error:&jsonError]; \n", [propertyName capitalizedStringOnyFirstCharacter]];
+            [result appendFormat:@"            if (jsonError) { \n"];
+            [result appendFormat:@"               DLog(@\"%@字典转模型失败！error:%%@\", jsonError); \n", propertyName];
+            [result appendFormat:@"            } \n"];
+            [result appendFormat:@"            return model; \n"];
+            [result appendFormat:@"          } \n"];
         }
             break;
         case PropertyTypeUnknow:
@@ -360,7 +426,7 @@
             break;
         case PropertyTypeNumber:
         {
-             [result appendFormat:@"        return value; \n"];
+            [result appendFormat:@"        return value; \n"];
         }
             break;
         case PropertyTypeArray:
@@ -368,8 +434,9 @@
             [result appendFormat:@"        NSError *jsonError = nil; \n"];
             [result appendFormat:@"        id model = [MTLJSONAdapter JSONArrayFromModels:value error:&jsonError]; \n"];
             [result appendFormat:@"        if (jsonError) { \n"];
-            [result appendFormat:@"            DLog(@\"%@模型转字典失败！error:%%@:jsonError\"); \n", propertyName];
+            [result appendFormat:@"            DLog(@\"%@模型转字典失败！error:%%@\", jsonError); \n", propertyName];
             [result appendFormat:@"        } \n"];
+            [result appendFormat:@"        return model; \n"];
         }
             break;
         case PropertyTypeObject:
@@ -377,8 +444,9 @@
             [result appendFormat:@"        NSError *jsonError = nil; \n"];
             [result appendFormat:@"        id model = [MTLJSONAdapter JSONDictionaryFromModel:value error:&jsonError]; \n"];
             [result appendFormat:@"        if (jsonError) { \n"];
-            [result appendFormat:@"            DLog(@\"%@模型转字典失败！error:%%@:jsonError\"); \n", propertyName];
+            [result appendFormat:@"            DLog(@\"%@模型转字典失败！error:%%@\", jsonError); \n", propertyName];
             [result appendFormat:@"        } \n"];
+            [result appendFormat:@"        return model; \n"];
         }
             break;
         case PropertyTypeUnknow:
@@ -423,7 +491,7 @@
             break;
         case PropertyTypeObject:
         {
-             return @"NSDictionary";
+            return @"NSDictionary";
         }
             break;
         case PropertyTypeUnknow:
@@ -451,5 +519,6 @@
         return PropertyTypeUnknow;
     }
 }
+
 
 @end

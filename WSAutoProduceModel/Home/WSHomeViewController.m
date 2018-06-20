@@ -9,13 +9,14 @@
 #import "WSHomeViewController.h"
 #import "WSPreviewWindowController.h"
 #import "WSPreviewViewController.h"
-#import "JsonFormatBiz.h"
+#import "JsonToCodeBiz.h"
 
 #define WSFileSavePath                      @"WSFileSavePath"
 #define WSClassName                         @"WSClassName"
 #define WSJsonStr                           @"WSJsonStr"
 
 #define ClassNameExpress                    @"#className#"
+#define ImportExpress                       @"#import#"
 #define PropertiesExpress                   @"#properties#"
 #define MTLJSONSerializingExpress           @"#MTLJSONSerializing#"
 #define MTLManagedObjectSerializingExpress  @"#MTLManagedObjectSerializing#"
@@ -77,11 +78,11 @@
     NSString *jsonStr = self.jsonStrTextView.string;
     NSString *hTempleContent = [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateH" ofType:@"txt"];
     NSString *mTempleContent = [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateM" ofType:@"txt"];
-    [JsonFormatBiz processJsonObjWithObj:jsonStr key:className hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:ClassNameExpress propertiesExpress:PropertiesExpress JSONSerializingEXpress:MTLJSONSerializingExpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingExpress callBack:^(NSString *hFileContent, NSString *mFileContent, NSString *key) {
-        NSString *HFileName = [NSString stringWithFormat:@"%@.h", key];
-        NSString *MFileName = [NSString stringWithFormat:@"%@.m", key];
-        HFileName = [HFileName capitalizedString];
-        MFileName = [MFileName capitalizedString];
+    [JsonToCodeBiz processJsonObjWithObj:jsonStr key:className hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:ClassNameExpress propertiesExpress:PropertiesExpress importExpress:ImportExpress JSONSerializingEXpress:MTLJSONSerializingExpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingExpress callBack:^(NSString *hFileContent, NSString *mFileContent, NSString *key) {
+        NSString *HFileName = [key capitalizedString];
+        NSString *MFileName = [key capitalizedString];
+        HFileName = [NSString stringWithFormat:@"%@.h", HFileName];
+        MFileName = [NSString stringWithFormat:@"%@.m", MFileName];
         
         NSString *HFilePath = [savePath stringByAppendingPathComponent:HFileName];
         NSString *MFilePath = [savePath stringByAppendingPathComponent:MFileName];
@@ -155,11 +156,11 @@
     
     NSString *hTempleContent = [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateH" ofType:@"txt"];
     NSString *mTempleContent = [WSFileUtil getFileContentInBundleWithResource:@"WSNormalTemplateM" ofType:@"txt"];
-    [JsonFormatBiz processJsonObjWithObj:jsonStr key:className hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:ClassNameExpress propertiesExpress:PropertiesExpress JSONSerializingEXpress:MTLJSONSerializingExpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingExpress callBack:^(NSString *hFileContent, NSString *mFileContent, NSString *key) {
-        NSString *HFileName = [NSString stringWithFormat:@"%@.h", key];
-        NSString *MFileName = [NSString stringWithFormat:@"%@.m", key];
-        HFileName = [HFileName capitalizedString];
-        MFileName = [MFileName capitalizedString];
+    [JsonToCodeBiz processJsonObjWithObj:jsonStr key:className hTempleContent:hTempleContent mTempleContent:mTempleContent classNameExpress:ClassNameExpress propertiesExpress:PropertiesExpress importExpress:ImportExpress JSONSerializingEXpress:MTLJSONSerializingExpress MTLManagedObjectSerializingEXpress:MTLManagedObjectSerializingExpress callBack:^(NSString *hFileContent, NSString *mFileContent, NSString *key) {
+        NSString *HFileName = [key capitalizedString];
+        NSString *MFileName = [key capitalizedString];
+        HFileName = [NSString stringWithFormat:@"%@.h", HFileName];
+        MFileName = [NSString stringWithFormat:@"%@.m", MFileName];
         
         NSString *HFilePath = [savePath stringByAppendingPathComponent:HFileName];
         NSString *MFilePath = [savePath stringByAppendingPathComponent:MFileName];
