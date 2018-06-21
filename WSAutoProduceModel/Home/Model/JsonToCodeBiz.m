@@ -284,6 +284,9 @@
             [result appendString:[NSString stringWithFormat:@"            }\n"]];
         }
     }
+    [result appendString:@"            if (!value) {\n"];
+    [result appendString:@"                return [NSNull null];\n"];
+    [result appendString:@"            }\n"];
     [result appendString:@"            return value;\n"];
     [result appendString:@"        }];\n"];
     [result appendString:@"    return valueTransformer;\n"];
