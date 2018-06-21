@@ -301,7 +301,7 @@
     [result appendFormat:@"#pragma mark - MTLManagedObjectSerializing \n"];
     [result appendFormat:@"+ (NSString *)managedObjectEntityName \n"];
     [result appendFormat:@"{\n"];
-    [result appendFormat:@"    return @\"%@\"; \n", entityName];
+    [result appendFormat:@"    return @\"%@Entity\"; \n", [entityName capitalizedStringOnyFirstCharacter]];
     [result appendFormat:@"} \n"];
     [result appendFormat:@"\n"];
     [result appendFormat:@"+ (NSDictionary *)managedObjectKeysByPropertyKey{ \n"];
