@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C04B23920E4D59D0035CFF5 /* SwiftWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B23720E4D59D0035CFF5 /* SwiftWC.m */; };
+		7C04B23A20E4D59D0035CFF5 /* SwiftWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B23820E4D59D0035CFF5 /* SwiftWC.xib */; };
+		7C04B23E20E4D5EA0035CFF5 /* SwiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B23C20E4D5EA0035CFF5 /* SwiftVC.m */; };
+		7C04B23F20E4D5EA0035CFF5 /* SwiftVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B23D20E4D5EA0035CFF5 /* SwiftVC.xib */; };
+		7C04B24320E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */; };
 		7CD321FC20DA315F00ED56D1 /* WSPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */; };
 		7CD3220C20DA319B00ED56D1 /* NSView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220020DA319A00ED56D1 /* NSView+Util.m */; };
 		7CD3220D20DA319B00ED56D1 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220120DA319A00ED56D1 /* NSString+Util.m */; };
@@ -32,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C04B23620E4D59D0035CFF5 /* SwiftWC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftWC.h; sourceTree = "<group>"; };
+		7C04B23720E4D59D0035CFF5 /* SwiftWC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftWC.m; sourceTree = "<group>"; };
+		7C04B23820E4D59D0035CFF5 /* SwiftWC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwiftWC.xib; sourceTree = "<group>"; };
+		7C04B23B20E4D5EA0035CFF5 /* SwiftVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftVC.h; sourceTree = "<group>"; };
+		7C04B23C20E4D5EA0035CFF5 /* SwiftVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftVC.m; sourceTree = "<group>"; };
+		7C04B23D20E4D5EA0035CFF5 /* SwiftVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwiftVC.xib; sourceTree = "<group>"; };
+		7C04B24120E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftJsonToCodeBiz.h; sourceTree = "<group>"; };
+		7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftJsonToCodeBiz.m; sourceTree = "<group>"; };
 		7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPropertyModel.m; sourceTree = "<group>"; };
 		7CD321FB20DA315F00ED56D1 /* WSPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPropertyModel.h; sourceTree = "<group>"; };
 		7CD321FE20DA319A00ED56D1 /* WSJsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSJsonUtil.h; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSJsonUtil.h; sourceTree = "<group>"; };
@@ -85,6 +98,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C04B23320E4D50C0035CFF5 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				7C04B23520E4D5340035CFF5 /* VC */,
+				7C04B24020E4E4860035CFF5 /* Model */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		7C04B23420E4D5260035CFF5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				A21ACFDC1CF83DCC00772EC7 /* WSHomeWindowController.h */,
+				A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */,
+				A21ACFDF1CF83DDF00772EC7 /* WSHomeViewController.h */,
+				A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		7C04B23520E4D5340035CFF5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				7C04B23620E4D59D0035CFF5 /* SwiftWC.h */,
+				7C04B23720E4D59D0035CFF5 /* SwiftWC.m */,
+				7C04B23820E4D59D0035CFF5 /* SwiftWC.xib */,
+				7C04B23B20E4D5EA0035CFF5 /* SwiftVC.h */,
+				7C04B23C20E4D5EA0035CFF5 /* SwiftVC.m */,
+				7C04B23D20E4D5EA0035CFF5 /* SwiftVC.xib */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		7C04B24020E4E4860035CFF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C04B24120E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.h */,
+				7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7CD321FD20DA316200ED56D1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,10 +191,10 @@
 		A21ACF571CF6AB0C00772EC7 /* WSAutoProduceModel */ = {
 			isa = PBXGroup;
 			children = (
+				7C04B23320E4D50C0035CFF5 /* Swift */,
 				A21ACFC51CF7E97C00772EC7 /* Util */,
 				A21ACF971CF6D22400772EC7 /* Templates */,
-				A21ACFDB1CF83DB200772EC7 /* Home */,
-				A21ACFD01CF7EFFD00772EC7 /* Preview */,
+				A21ACFDB1CF83DB200772EC7 /* OC */,
 				A21ACF611CF6AB0C00772EC7 /* Document.h */,
 				A21ACF621CF6AB0C00772EC7 /* Document.m */,
 				A21ACF581CF6AB0C00772EC7 /* AppDelegate.h */,
@@ -197,17 +252,15 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
-		A21ACFDB1CF83DB200772EC7 /* Home */ = {
+		A21ACFDB1CF83DB200772EC7 /* OC */ = {
 			isa = PBXGroup;
 			children = (
+				A21ACFD01CF7EFFD00772EC7 /* Preview */,
+				7C04B23420E4D5260035CFF5 /* VC */,
 				7CD321FD20DA316200ED56D1 /* Entity */,
 				A22DA25A1E57020200956000 /* Model */,
-				A21ACFDC1CF83DCC00772EC7 /* WSHomeWindowController.h */,
-				A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */,
-				A21ACFDF1CF83DDF00772EC7 /* WSHomeViewController.h */,
-				A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */,
 			);
-			path = Home;
+			path = OC;
 			sourceTree = "<group>";
 		};
 		A22DA25A1E57020200956000 /* Model */ = {
@@ -278,10 +331,12 @@
 			files = (
 				A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */,
 				A21ACF651CF6AB0C00772EC7 /* Assets.xcassets in Resources */,
+				7C04B23F20E4D5EA0035CFF5 /* SwiftVC.xib in Resources */,
 				A21ACF681CF6AB0C00772EC7 /* Main.storyboard in Resources */,
 				A21ACF9F1CF6DBDD00772EC7 /* WSNormalTemplateH.txt in Resources */,
 				A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */,
 				A21ACF9E1CF6D31B00772EC7 /* WSNormalTemplateM.txt in Resources */,
+				7C04B23A20E4D59D0035CFF5 /* SwiftWC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */,
+				7C04B24320E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m in Sources */,
 				A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */,
 				A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */,
 				7CD3220E20DA319B00ED56D1 /* NSTextView+XW.m in Sources */,
@@ -300,6 +356,8 @@
 				7CD3221020DA319B00ED56D1 /* WSJsonUtil.m in Sources */,
 				7CD3220D20DA319B00ED56D1 /* NSString+Util.m in Sources */,
 				A21ACF5D1CF6AB0C00772EC7 /* main.m in Sources */,
+				7C04B23E20E4D5EA0035CFF5 /* SwiftVC.m in Sources */,
+				7C04B23920E4D59D0035CFF5 /* SwiftWC.m in Sources */,
 				7CD321FC20DA315F00ED56D1 /* WSPropertyModel.m in Sources */,
 				7CD3221120DA319B00ED56D1 /* WSFileUtil.m in Sources */,
 				7CD3220F20DA319B00ED56D1 /* WSNumUtil.m in Sources */,

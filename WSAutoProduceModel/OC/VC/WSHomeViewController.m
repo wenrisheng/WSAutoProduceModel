@@ -134,7 +134,7 @@
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setCanChooseDirectories:NO]; //可以打开目录
     [oPanel setCanChooseFiles:YES]; //不能打开文件(我需要处理一个目录内的所有文件)
-    if ([oPanel runModal] == NSOKButton) {  //如果用户点OK
+    if ([oPanel runModal] == NSModalResponseOK) {  //如果用户点OK
         NSURL *url = [[oPanel URLs] objectAtIndex:0];
         NSString *mTemplatePath = [url relativePath];
         self.mTemplateTextField.stringValue = mTemplatePath;
@@ -179,6 +179,11 @@
         }
     }];
 
+}
+
+- (IBAction)swiftBtnAction:(id)sender
+{
+    
 }
 
 @end

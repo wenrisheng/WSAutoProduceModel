@@ -73,4 +73,8 @@ typedef NS_ENUM(NSInteger, FrameworkType)
 + (NSString *)getPropertyTypeNameWithValue:(id)value;
 + (PropertyType)getPropertyTypeWithModel:(WSPropertyModel *)model;
 
+#pragma mark -
++ (void)getPropertiesModelFromJsonDicStr:(NSString *)jsonStr handle:(void (^)(NSArray<WSPropertyModel *> *modelArray, NSError *error))handle;
++ (PropertyType)getPropertyTypeWithValue:(id)value;
+
 @end
