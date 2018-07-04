@@ -29,10 +29,11 @@
 
 + (void)processJsonDictionaryWithDic:(NSDictionary *)dic key:(NSString *)key templeContent:(NSString *)templeContent express:(NSString *)express callBack:(void(^)(NSString *fileContent, NSString *key))callBack
 {
-    NSString *swiftFileContent = [self getSwiftFileContentWithDictionary:dic key:key templeContent:templeContent express:express];
-    if (callBack) {
-        callBack(swiftFileContent, key);
-    }
+    [self getSwiftFileContentWithDictionary:dic key:key templeContent:templeContent express:express handle:^(NSString *fileContent) {
+        if (callBack) {
+            callBack(fileContent, key);
+        }
+    }];
 }
 
 + (void)processJsonArrayWithArray:(NSArray *)Array key:(NSString *)key templeContent:(NSString *)templeContent express:(NSString *)express callBack:(void(^)(NSString *fileContent, NSString *key))callBack
@@ -41,17 +42,78 @@
 }
 
 #pragma mark -
-+ (NSString *)getSwiftFileContentWithDictionary:(NSDictionary *)dic key:(NSString *)key templeContent:(NSString *)templeContent express:(NSString *)express
++ (void)getSwiftFileContentWithDictionary:(NSDictionary *)dic key:(NSString *)key templeContent:(NSString *)templeContent express:(NSString *)express handle:(void(^)(NSString *fileContent))handle
 {
     NSMutableString *fileContent = [NSMutableString string];
+   
     [fileContent appendFormat:@"class %@: HandyJSON {\n", [key capitalizedStringOnyFirstCharacter]];
     [self getVarStrWithDictionary:dic callBack:^(NSString *varStr, NSError *error) {
         if (varStr) {
             [fileContent appendFormat:@"%@\n", varStr];
         }
+        [fileContent appendFormat:@"\n"];
+        [fileContent appendFormat:@"    required init() {}\n"];
+        [fileContent appendFormat:@"}\n"];
+        [fileContent appendFormat:@"\n"];
+         NSArray *allKey = [dic allKeys];
+        for (NSString *key in allKey) {
+            id value = [dic valueForKey:key];
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                [self getDictionaryClassContentWithDictionary:value key:key handle:^(NSString *classContent) {
+                    [fileContent appendFormat:@"%@", classContent];
+                }];
+            } else if([value isKindOfClass:[NSArray class]]) {
+                [self getArrayClassContentWithArray:value key:key handle:^(NSString *classContent) {
+                   [fileContent appendFormat:@"%@", classContent];
+                }];
+            }
+        }
     }];
+}
+
++ (void)getDictionaryClassContentWithDictionary:(NSDictionary *)dic key:(NSString *)key handle:(void(^)(NSString *fileContent))handle
+{
+    NSMutableString *fileContent = [NSMutableString string];
     
-    return @"";
+    [fileContent appendFormat:@"class %@: HandyJSON {\n", [key capitalizedStringOnyFirstCharacter]];
+    [self getVarStrWithDictionary:dic callBack:^(NSString *varStr, NSError *error) {
+        if (varStr) {
+            [fileContent appendFormat:@"%@\n", varStr];
+        }
+        [fileContent appendFormat:@"\n"];
+        [fileContent appendFormat:@"    required init() {}\n"];
+        [fileContent appendFormat:@"}\n"];
+        [fileContent appendFormat:@"\n"];
+        NSArray *allKey = [dic allKeys];
+        for (NSString *key in allKey) {
+            id value = [dic valueForKey:key];
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                [self getSwiftFileContentWithDictionary:dic key:key templeContent:nil express:nil handle:^(NSString *clzFileContent) {
+                    [fileContent stringByAppendingString:clzFileContent];
+                }];
+            } else if([value isKindOfClass:[NSArray class]]) {
+                
+            }
+        }
+    }];
+}
+
++ (void)getArrayClassContentWithArray:(NSArray *)array key:(NSString *)key handle:(void(^)(NSString *fileContent))handle
+{
+    if (array.count == 0) {
+        if (handle) {
+            handle(@"");
+        }
+    } else {
+        id value = [array firstObject];
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            [self getDictionaryClassContentWithDictionary:value key:key handle:^(NSString *fileContent) {
+                if (handle) {
+                    handle(fileContent);
+                }
+            }];
+        }
+    }
 }
 
 + (void)getVarStrWithDictionary:(NSDictionary *)dictionary callBack:(void(^)(NSString *varStr, NSError *error))callBack

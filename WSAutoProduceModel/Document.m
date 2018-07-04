@@ -7,6 +7,8 @@
 //
 
 #import "Document.h"
+#import "ObjectCWC.h"
+#import "ObjectCVC.h"
 
 @interface Document ()
 
@@ -28,7 +30,12 @@
 
 - (void)makeWindowControllers {
     // Override to return the Storyboard file name of the document.
-    [self addWindowController:[[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"]];
+    ObjectCVC *homeVC = [[ObjectCVC alloc] init];
+    ObjectCWC *homeWC = [[ObjectCWC alloc] initWithWindowNibName:@"ObjectCWC"];
+    homeWC.contentViewController = homeVC;
+    
+    [self addWindowController:homeWC];
+//    [self addWindowController:[[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {

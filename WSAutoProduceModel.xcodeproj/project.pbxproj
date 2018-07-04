@@ -12,6 +12,10 @@
 		7C04B23E20E4D5EA0035CFF5 /* SwiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B23C20E4D5EA0035CFF5 /* SwiftVC.m */; };
 		7C04B23F20E4D5EA0035CFF5 /* SwiftVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B23D20E4D5EA0035CFF5 /* SwiftVC.xib */; };
 		7C04B24320E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */; };
+		7C04B24520E750B00035CFF5 /* ObjectCWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B24420E750B00035CFF5 /* ObjectCWC.xib */; };
+		7C04B24720E7510A0035CFF5 /* ObjectCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B24620E7510A0035CFF5 /* ObjectCVC.xib */; };
+		7C04B25620E9FD020035CFF5 /* AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04B25520E9FD020035CFF5 /* AppService.m */; };
+		7C04B27520EA0E9D0035CFF5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C04B27420EA0E9D0035CFF5 /* MainMenu.xib */; };
 		7CD321FC20DA315F00ED56D1 /* WSPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */; };
 		7CD3220C20DA319B00ED56D1 /* NSView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220020DA319A00ED56D1 /* NSView+Util.m */; };
 		7CD3220D20DA319B00ED56D1 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3220120DA319A00ED56D1 /* NSString+Util.m */; };
@@ -23,14 +27,13 @@
 		A21ACF5D1CF6AB0C00772EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACF5C1CF6AB0C00772EC7 /* main.m */; };
 		A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACF621CF6AB0C00772EC7 /* Document.m */; };
 		A21ACF651CF6AB0C00772EC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF641CF6AB0C00772EC7 /* Assets.xcassets */; };
-		A21ACF681CF6AB0C00772EC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF661CF6AB0C00772EC7 /* Main.storyboard */; };
 		A21ACF9E1CF6D31B00772EC7 /* WSNormalTemplateM.txt in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF991CF6D22E00772EC7 /* WSNormalTemplateM.txt */; };
 		A21ACF9F1CF6DBDD00772EC7 /* WSNormalTemplateH.txt in Resources */ = {isa = PBXBuildFile; fileRef = A21ACF981CF6D22E00772EC7 /* WSNormalTemplateH.txt */; };
 		A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFC31CF7E97C00772EC7 /* NSObject+WSClass.m */; };
 		A21ACFD41CF7F02400772EC7 /* WSPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFD21CF7F02400772EC7 /* WSPreviewViewController.m */; };
 		A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFD71CF7F58900772EC7 /* WSPreviewWindowController.m */; };
-		A21ACFDE1CF83DCC00772EC7 /* WSHomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */; };
-		A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */; };
+		A21ACFDE1CF83DCC00772EC7 /* ObjectCWC.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFDD1CF83DCC00772EC7 /* ObjectCWC.m */; };
+		A21ACFE11CF83DDF00772EC7 /* ObjectCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A21ACFE01CF83DDF00772EC7 /* ObjectCVC.m */; };
 		A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */; };
 		A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */; };
 		A22DA25D1E57022200956000 /* JsonToCodeBiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A22DA25C1E57022200956000 /* JsonToCodeBiz.m */; };
@@ -45,6 +48,11 @@
 		7C04B23D20E4D5EA0035CFF5 /* SwiftVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwiftVC.xib; sourceTree = "<group>"; };
 		7C04B24120E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftJsonToCodeBiz.h; sourceTree = "<group>"; };
 		7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftJsonToCodeBiz.m; sourceTree = "<group>"; };
+		7C04B24420E750B00035CFF5 /* ObjectCWC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectCWC.xib; sourceTree = "<group>"; };
+		7C04B24620E7510A0035CFF5 /* ObjectCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectCVC.xib; sourceTree = "<group>"; };
+		7C04B25420E9FD020035CFF5 /* AppService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppService.h; sourceTree = "<group>"; };
+		7C04B25520E9FD020035CFF5 /* AppService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppService.m; sourceTree = "<group>"; };
+		7C04B27420EA0E9D0035CFF5 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		7CD321FA20DA315E00ED56D1 /* WSPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPropertyModel.m; sourceTree = "<group>"; };
 		7CD321FB20DA315F00ED56D1 /* WSPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPropertyModel.h; sourceTree = "<group>"; };
 		7CD321FE20DA319A00ED56D1 /* WSJsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSJsonUtil.h; path = ../../../WSXcodePlugin/WSXcodePlugin/Util/WSJsonUtil.h; sourceTree = "<group>"; };
@@ -66,7 +74,6 @@
 		A21ACF611CF6AB0C00772EC7 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		A21ACF621CF6AB0C00772EC7 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		A21ACF641CF6AB0C00772EC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A21ACF671CF6AB0C00772EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A21ACF691CF6AB0C00772EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A21ACF981CF6D22E00772EC7 /* WSNormalTemplateH.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WSNormalTemplateH.txt; sourceTree = "<group>"; };
 		A21ACF991CF6D22E00772EC7 /* WSNormalTemplateM.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WSNormalTemplateM.txt; sourceTree = "<group>"; };
@@ -77,10 +84,10 @@
 		A21ACFD21CF7F02400772EC7 /* WSPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPreviewViewController.m; sourceTree = "<group>"; };
 		A21ACFD61CF7F58900772EC7 /* WSPreviewWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPreviewWindowController.h; sourceTree = "<group>"; };
 		A21ACFD71CF7F58900772EC7 /* WSPreviewWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPreviewWindowController.m; sourceTree = "<group>"; };
-		A21ACFDC1CF83DCC00772EC7 /* WSHomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSHomeWindowController.h; sourceTree = "<group>"; };
-		A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeWindowController.m; sourceTree = "<group>"; };
-		A21ACFDF1CF83DDF00772EC7 /* WSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSHomeViewController.h; sourceTree = "<group>"; };
-		A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHomeViewController.m; sourceTree = "<group>"; };
+		A21ACFDC1CF83DCC00772EC7 /* ObjectCWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCWC.h; sourceTree = "<group>"; };
+		A21ACFDD1CF83DCC00772EC7 /* ObjectCWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectCWC.m; sourceTree = "<group>"; };
+		A21ACFDF1CF83DDF00772EC7 /* ObjectCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCVC.h; sourceTree = "<group>"; };
+		A21ACFE01CF83DDF00772EC7 /* ObjectCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectCVC.m; sourceTree = "<group>"; };
 		A21ACFE51CFC0F8600772EC7 /* WSPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewViewController.xib; sourceTree = "<group>"; };
 		A21ACFE71CFC101800772EC7 /* WSPreviewWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSPreviewWindowController.xib; sourceTree = "<group>"; };
 		A22DA25B1E57022200956000 /* JsonToCodeBiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonToCodeBiz.h; sourceTree = "<group>"; };
@@ -110,10 +117,12 @@
 		7C04B23420E4D5260035CFF5 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				A21ACFDC1CF83DCC00772EC7 /* WSHomeWindowController.h */,
-				A21ACFDD1CF83DCC00772EC7 /* WSHomeWindowController.m */,
-				A21ACFDF1CF83DDF00772EC7 /* WSHomeViewController.h */,
-				A21ACFE01CF83DDF00772EC7 /* WSHomeViewController.m */,
+				A21ACFDC1CF83DCC00772EC7 /* ObjectCWC.h */,
+				A21ACFDD1CF83DCC00772EC7 /* ObjectCWC.m */,
+				7C04B24420E750B00035CFF5 /* ObjectCWC.xib */,
+				A21ACFDF1CF83DDF00772EC7 /* ObjectCVC.h */,
+				A21ACFE01CF83DDF00772EC7 /* ObjectCVC.m */,
+				7C04B24620E7510A0035CFF5 /* ObjectCVC.xib */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -138,6 +147,14 @@
 				7C04B24220E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7C04B27620EA0F360035CFF5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A21ACF971CF6D22400772EC7 /* Templates */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		7CD321FD20DA316200ED56D1 /* Entity */ = {
@@ -191,18 +208,18 @@
 		A21ACF571CF6AB0C00772EC7 /* WSAutoProduceModel */ = {
 			isa = PBXGroup;
 			children = (
+				7C04B27620EA0F360035CFF5 /* Resources */,
 				7C04B23320E4D50C0035CFF5 /* Swift */,
 				A21ACFC51CF7E97C00772EC7 /* Util */,
-				A21ACF971CF6D22400772EC7 /* Templates */,
 				A21ACFDB1CF83DB200772EC7 /* OC */,
 				A21ACF611CF6AB0C00772EC7 /* Document.h */,
 				A21ACF621CF6AB0C00772EC7 /* Document.m */,
 				A21ACF581CF6AB0C00772EC7 /* AppDelegate.h */,
 				A21ACF591CF6AB0C00772EC7 /* AppDelegate.m */,
 				A21ACF641CF6AB0C00772EC7 /* Assets.xcassets */,
-				A21ACF661CF6AB0C00772EC7 /* Main.storyboard */,
 				A21ACF691CF6AB0C00772EC7 /* Info.plist */,
 				A21ACF5B1CF6AB0C00772EC7 /* Supporting Files */,
+				7C04B27420EA0E9D0035CFF5 /* MainMenu.xib */,
 			);
 			path = WSAutoProduceModel;
 			sourceTree = "<group>";
@@ -268,6 +285,8 @@
 			children = (
 				A22DA25B1E57022200956000 /* JsonToCodeBiz.h */,
 				A22DA25C1E57022200956000 /* JsonToCodeBiz.m */,
+				7C04B25420E9FD020035CFF5 /* AppService.h */,
+				7C04B25520E9FD020035CFF5 /* AppService.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +322,8 @@
 				TargetAttributes = {
 					A21ACF541CF6AB0C00772EC7 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 59YX2RBMQJ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -330,9 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21ACFE81CFC101800772EC7 /* WSPreviewWindowController.xib in Resources */,
+				7C04B27520EA0E9D0035CFF5 /* MainMenu.xib in Resources */,
 				A21ACF651CF6AB0C00772EC7 /* Assets.xcassets in Resources */,
 				7C04B23F20E4D5EA0035CFF5 /* SwiftVC.xib in Resources */,
-				A21ACF681CF6AB0C00772EC7 /* Main.storyboard in Resources */,
+				7C04B24720E7510A0035CFF5 /* ObjectCVC.xib in Resources */,
+				7C04B24520E750B00035CFF5 /* ObjectCWC.xib in Resources */,
 				A21ACF9F1CF6DBDD00772EC7 /* WSNormalTemplateH.txt in Resources */,
 				A21ACFE61CFC0F8600772EC7 /* WSPreviewViewController.xib in Resources */,
 				A21ACF9E1CF6D31B00772EC7 /* WSNormalTemplateM.txt in Resources */,
@@ -348,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21ACFD91CF7F58900772EC7 /* WSPreviewWindowController.m in Sources */,
+				7C04B25620E9FD020035CFF5 /* AppService.m in Sources */,
 				7C04B24320E4E4AE0035CFF5 /* SwiftJsonToCodeBiz.m in Sources */,
 				A21ACFCA1CF7E97C00772EC7 /* NSObject+WSClass.m in Sources */,
 				A21ACF631CF6AB0C00772EC7 /* Document.m in Sources */,
@@ -362,25 +386,14 @@
 				7CD3221120DA319B00ED56D1 /* WSFileUtil.m in Sources */,
 				7CD3220F20DA319B00ED56D1 /* WSNumUtil.m in Sources */,
 				A21ACF5A1CF6AB0C00772EC7 /* AppDelegate.m in Sources */,
-				A21ACFDE1CF83DCC00772EC7 /* WSHomeWindowController.m in Sources */,
+				A21ACFDE1CF83DCC00772EC7 /* ObjectCWC.m in Sources */,
 				7CD3220C20DA319B00ED56D1 /* NSView+Util.m in Sources */,
 				A21ACFD41CF7F02400772EC7 /* WSPreviewViewController.m in Sources */,
-				A21ACFE11CF83DDF00772EC7 /* WSHomeViewController.m in Sources */,
+				A21ACFE11CF83DDF00772EC7 /* ObjectCVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A21ACF661CF6AB0C00772EC7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A21ACF671CF6AB0C00772EC7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A21ACF6A1CF6AB0C00772EC7 /* Debug */ = {
@@ -488,7 +501,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 59YX2RBMQJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WSAutoProduceModel/PrefixHeader.pch";
 				INFOPLIST_FILE = WSAutoProduceModel/Info.plist;
@@ -496,6 +512,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.top.common.WSAutoProduceModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -503,7 +520,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 59YX2RBMQJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WSAutoProduceModel/PrefixHeader.pch";
 				INFOPLIST_FILE = WSAutoProduceModel/Info.plist;
@@ -511,6 +531,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.top.common.WSAutoProduceModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

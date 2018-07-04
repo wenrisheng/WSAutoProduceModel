@@ -7,6 +7,7 @@
 //
 
 #import "SwiftVC.h"
+#import "ObjectCWC.h"
 
 @interface SwiftVC ()
 
@@ -43,7 +44,8 @@
 }
 
 - (IBAction)OCBtnAction:(id)sender {
-    
+
+    [ObjectCWC show];
 }
 
 - (IBAction)produceBtnAction:(id)sender {

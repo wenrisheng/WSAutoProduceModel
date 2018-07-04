@@ -21,4 +21,6 @@
 
 #import "WSPropertyModel.h"
 
+#import "AppService.h"
+
 #endif /* PrefixHeader_pch */

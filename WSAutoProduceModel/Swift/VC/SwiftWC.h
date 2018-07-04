@@ -10,4 +10,6 @@
 
 @interface SwiftWC : NSWindowController
 
++ (void)show;
+
 @end

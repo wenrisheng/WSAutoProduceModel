@@ -6,10 +6,11 @@
 //  Copyright © 2016年 wenrisheng. All rights reserved.
 //
 
-#import "WSHomeViewController.h"
+#import "ObjectCVC.h"
 #import "WSPreviewWindowController.h"
 #import "WSPreviewViewController.h"
 #import "JsonToCodeBiz.h"
+#import "SwiftWC.h"
 
 #define WSFileSavePath                      @"WSFileSavePath"
 #define WSClassName                         @"WSClassName"
@@ -21,7 +22,7 @@
 #define MTLJSONSerializingExpress           @"#MTLJSONSerializing#"
 #define MTLManagedObjectSerializingExpress  @"#MTLManagedObjectSerializing#"
 
-@interface WSHomeViewController ()
+@interface ObjectCVC ()
 
 @property (strong, nonatomic) NSMutableArray *allWindowArray;
 @property (strong, nonatomic) WSPreviewWindowController *previewWC;
@@ -44,15 +45,18 @@
 - (IBAction)savePathButAction:(id)sender;
 - (IBAction)hTemplateButAction:(id)sender;
 - (IBAction)mTemplateButAction:(id)sender;
+- (IBAction)swiftBtnAction:(id)sender;
 
 @end
 
-@implementation WSHomeViewController
+@implementation ObjectCVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do view setup here.
     self.allWindowArray = [NSMutableArray array];
+    self.title = @"Object-C";
     self.view.window.title = @"ios模型生成软件";
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -96,10 +100,11 @@
         previewVC.mFilePath = MFilePath;
         previewVC.mFileName = MFileName;
         previewWC.window.title = [key capitalizedString];
-        [previewWC.window orderFront:nil];
+        [previewWC showWindow:nil];
+//        [previewWC.window orderFront:nil];
         
-        [self.allWindowArray removeAllObjects];
-        [self.allWindowArray addObject:previewWC];
+//        [self.allWindowArray removeAllObjects];
+//        [self.allWindowArray addObject:previewWC];
 
     }];
 }
@@ -183,7 +188,7 @@
 
 - (IBAction)swiftBtnAction:(id)sender
 {
-    
+    [SwiftWC show];
 }
 
 @end

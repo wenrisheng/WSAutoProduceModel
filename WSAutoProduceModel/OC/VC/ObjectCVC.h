@@ -1,5 +1,5 @@
 //
-//  WSHomeWindowController.h
+//  WSHomeViewController.h
 //  WSAutoProduceModel
 //
 //  Created by wenrisheng on 16/5/27.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface WSHomeWindowController : NSWindowController
+@interface ObjectCVC : NSViewController
 
 @end

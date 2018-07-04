@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "ObjectCWC.h"
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSMenu *mainMenu;
-
-- (IBAction)newMentItemAction:(id)sender;
+//@property (weak) IBOutlet NSMenu *mainMenu;
+//
+//- (IBAction)newMentItemAction:(id)sender;
+@property (nonatomic, strong) NSWindow *window;
 
 @end
 
@@ -20,15 +22,16 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-
+    ObjectCWC *wc = [ObjectCWC show];
+    self.window = wc.window;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
 
-- (IBAction)newMentItemAction:(id)sender {
-    
-}
+//- (IBAction)newMentItemAction:(id)sender {
+//    
+//}
 
 @end
